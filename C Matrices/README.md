@@ -1,3 +1,5 @@
+#C Matrices
+##Overview
 This library is a C library for matrix operations.
 With it, you can create, edit, and do computations with matrices, including but not limited to:
 - Matrix multiplication
