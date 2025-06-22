@@ -1,4 +1,4 @@
-//Programme to test the matrices library; matrix.c
+//Programme to test the matrices library; Matrix.c
 // by Neo Vorsatz
 // Last updated: 27 November 2024
 
@@ -57,7 +57,7 @@ int main() {
 
   //Applying m1 to the vectors
   matrix result;
-  mxMultiply(&result,&m1,&vectors);
+  mxMultiply(&result, &m1, &vectors);
   printf("Result:\n");
   printMatrix(&result);
 
@@ -83,7 +83,7 @@ int main() {
   printf("Determinant = %f\n",mxDeterminant(&m1));
 
   //Generating new results using the same vectors
-  mxMultiply(&result,&m1,&vectors);
+  mxMultiply(&result, &m1, &vectors);
   printf("New result, using same vectors:\n");
   printMatrix(&result);
 

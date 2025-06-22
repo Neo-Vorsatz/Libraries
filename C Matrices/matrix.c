@@ -28,6 +28,7 @@ boolean_t mxSet(matrix *write, char rows, char columns, element_t elements[SIZE]
   return 1;
 }
 
+//Copies the second matrix's data onto the first
 void mxCopy(matrix *write, matrix *read) {
   //Copy the number of rows and columns
   write->rows = read->rows;
@@ -375,7 +376,7 @@ boolean_t mxIdentity(matrix *write, char size) {
   return 1;
 }
 
-//Adds the second  matrix to the first
+//Adds the second matrix to the first
 boolean_t mxAdd(matrix *write, matrix *read1, matrix *read2) {
   //If the matrices can't be added
   if (!( (read1->rows==read2->rows)&&(read1->columns==read2->columns) )) {return 0;}
@@ -555,7 +556,7 @@ boolean_t mxInverse(matrix *write, matrix *read) {
   return 1;
 }
 
-//Solves for a particular index within a particular vector using Cramer's rule
+//Solves for a particular element within a particular vector using Cramer's rule
 element_t mxSolveCramer(matrix *transform, matrix *result, char vector, char index) {
   //If it's not a square matrix
   if (transform->rows!=transform->columns) {return 0;}

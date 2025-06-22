@@ -6,7 +6,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-
 /* USER MAY EDIT ================================*/
 
 #define SIZE 4 //Change this value to change the maximum size of your matrices
@@ -31,6 +30,7 @@ typedef struct {
 //Sets the given matrix's values to the parameters
 boolean_t mxSet(matrix *write, char rows, char columns, element_t elements[SIZE][SIZE]);
 
+//Copies the second matrix's data onto the first
 void mxCopy(matrix *write, matrix *read);
 
 //Sets the number of rows and columns of the given matrix
@@ -105,7 +105,7 @@ void mxZero(matrix *write);
 //Turns a matrix into the identity matrix with a particular size
 boolean_t mxIdentity(matrix *write, char size);
 
-//Adds the second  matrix to the first
+//Adds the second matrix to the first
 boolean_t mxAdd(matrix *write, matrix *read1, matrix *read2);
 
 //Scales/Multiplies the given matrix by a factor
@@ -126,7 +126,7 @@ boolean_t mxAdjoint(matrix *write, matrix *read);
 //Inverts the given matrix
 boolean_t mxInverse(matrix *write, matrix *read);
 
-//Solves for a particular index within a particular vector using Cramer's rule
+//Solves for a particular element within a particular vector using Cramer's rule
 element_t mxSolveCramer(matrix *transform, matrix *result, char vector, char index);
 
 //Solves for all vectors using the inverse of the transformation
