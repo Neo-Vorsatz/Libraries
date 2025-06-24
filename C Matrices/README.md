@@ -12,7 +12,8 @@ In this folder, test.c was made to test the module.<br>
 It can also be used as a reference to see how the module was intended to be used.
 
 ## How To Use
-Copy the header and implementation files anywhere where your C-compiler can find it (usually at the standard directory or in the same directory as your main file). You can make edits to the header file to modify the module to suit your needs:
+Copy the header and implementation files anywhere where your C-compiler can find it (usually at the standard directory or in the same directory as your main file). Then import the module like you would any other module, using `#include`.<br>
+You can make edits to the header file to modify the module to suit your needs:
 - You can change the value of SIZE (a char value) to change the maximum size of your matrices. By default SIZE is 4, meaning a 4x4 matrix is the largest that can be used.
 - You can change the data type of element_t to change the data type that the matrices use. By default element_t is a double, to allow fractional values.
 
