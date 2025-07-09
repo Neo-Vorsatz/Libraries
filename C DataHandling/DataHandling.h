@@ -6,6 +6,8 @@
 #ifndef DATAHANDLING_H
 #define DATAHANDLING_H
 
+#include "DataHandling.c"
+
 /* STATISTICS ================================*/
 
 //Returns the sum of an array of data values
@@ -31,6 +33,21 @@ double dhSqrt(double value);
 
 //Returns the standard deviance of an array of data values
 double dhStdDev(double data[], char length);
+
+/*================================*/
+/* COMPLEX ================================*/
+
+// Returns the sum of two complex numbers
+dhComplex dhComplexAdd(dhComplex firstNum, dhComplex secondNum);
+
+// dhComplex dhComplexSub(dhComplex firstNum, dhComplex secondNum);
+// dhComplex dhComplexConjugate(dhComplex num);
+// dhComplex dhComplexMul(dhComplex firstNum, dhComplex secondNum);
+// dhComplex dhComplexDiv(dhComplex numerator, dhComplex denomenator);
+// double dhModulus( dhComplex complexNum);
+// double dhArgument(dhComplex complexNum);
+
+
 
 /*================================*/
 /* FOURIER ================================*/

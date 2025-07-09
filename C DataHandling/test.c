@@ -43,7 +43,7 @@ int main() {
     dhSqrt(9.0), dhSqrt(100.0), dhSqrt(0.0), dhSqrt(1.0), dhSqrt(2.0));
 
   //Testing standard deviation
-  printf("Standard deviation: %.3f\n", dhStdDev(testData, length));
+  printf("Standard deviation: %.3f\n", dhStdDev(testData, length)); 
 
   printf("=== Fourier ===");
 }
