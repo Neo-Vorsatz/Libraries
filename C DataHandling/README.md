@@ -1,4 +1,4 @@
-# C DataHandling
+# C DataHandling [Warning: In Production]
 ## Credits
 This module was made with the help of Ambesiwe Sonka.
 
@@ -11,7 +11,8 @@ In this folder, test.c was made to test the module.<br>
 It can also be used as a reference to see how the module was intended to be used.
 
 ## How To Use
-Copy the header and implementation files anywhere where your C-compiler can find it (usually at the standard directory or in the same directory as your main file). Then import the module like you would any other module, using `#include`.
+Copy the header and implementation files anywhere where your C-compiler can find it (usually at the standard directory or in the same directory as your main file). Then import the module like you would any other module, using `#include`.<br>
+This module requires the ComplexNumbers module to work. It's recommended that you edit the include-path in the implementation file to find where you have your copy of the ComplexNumbers module.
 
 ## Functions
 ### Statistics
@@ -40,10 +41,6 @@ Takes a pointer to where the cumulative sum will be written, a pointer to the ar
 `double dhVar(double data[], char length);`<br>
 Takes a pointer to the array of data values, and the number of the data values.<br>
 Returns the varience of an array of data values.
-
-`double dhSqrt(double value);`
-Takes the value that must be square-rooted.<br>
-Returns the square-root of a value.
 
 `double dhStdDev(double data[], char length);`<br>
 Takes a pointer to the array of data values, and the number of the data values.<br>

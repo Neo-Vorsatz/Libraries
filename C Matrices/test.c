@@ -1,6 +1,6 @@
-//Programme to test the matrices library; Matrix.c
+// Programme to test the matrices library; Matrix
 // by Neo Vorsatz
-// Last updated: 27 November 2024
+// Last updated: 9 July 2025
 
 /* Test was done with a maximum matrix size of 4 by 4, and the elements as type "double" */
 
@@ -26,7 +26,7 @@ int main() {
   printMatrix(&m1);
 
   //Designing an arbitrary matrix
-  element_t row[3] = {10, 4, 8};
+  mxElement_t row[3] = {10, 4, 8};
   mxWriteRow_len(&m1, 0, row, 3);
   row[0] = 16;
   row[1] = 9;
@@ -50,7 +50,7 @@ int main() {
 
   //Creating vectors
   matrix vectors;
-  element_t elements[4][4] = {{12,-6,0,0},{0,18,0,0},{4,-11,0,0},{0,0,0,0}};
+  mxElement_t elements[4][4] = {{12,-6,0,0},{0,18,0,0},{4,-11,0,0},{0,0,0,0}};
   mxSet(&vectors, 3, 2, elements);
   printf("Vectors:\n");
   printMatrix(&vectors);
@@ -68,7 +68,7 @@ int main() {
   printMatrix(&solution);
 
   //Generating another arbitrary matrix
-  element_t column[3] = {5, 5, 5};
+  mxElement_t column[3] = {5, 5, 5};
   for (char c=0; c<3; c++) {
     mxWriteColumn_len(&m1, c, column, 3); //Note that I can edit 3 values of a column, even though the matrix only has 2 rows
   }
@@ -107,12 +107,12 @@ int main() {
   }
 
   //Solving for a single element using Cramer's Rule
-  element_t element = mxSolveCramer(&m1, &result, 1, 2);
+  mxElement_t element = mxSolveCramer(&m1, &result, 1, 2);
   printf("Solving for the third element of the second vector, using Cramer's Rule:\n");
   printf("%f\n", element);
 
   //Testing equality
-  element_t m2;
+  matrix m2;
   mxCopy(&m2, &m1);
   if (mxEqual(&m1, &m2)) {
     printf("Equality successful\n");

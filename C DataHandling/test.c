@@ -1,6 +1,6 @@
-//Programme to test the data handling library; DataHandling.c
+// Programme to test the data handling library; DataHandling
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 24 June 2025
+// Last updated: 9 July 2025
 
 #include "DataHandling.c"
 #include <stdio.h>
@@ -37,10 +37,6 @@ int main() {
 
   //Testing variance
   printf("Variance: %.3f\n", dhVar(testData, length));
-
-  //Testing square-root
-  printf("Square-root of 9, 100, 0, 1, 2: %.3f, %.3f, %.3f, %.3f, %.3f\n",
-    dhSqrt(9.0), dhSqrt(100.0), dhSqrt(0.0), dhSqrt(1.0), dhSqrt(2.0));
 
   //Testing standard deviation
   printf("Standard deviation: %.3f\n", dhStdDev(testData, length)); 

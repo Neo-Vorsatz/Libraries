@@ -1,12 +1,10 @@
 // Data Handling Library, for processing data
 // Header file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 24 June 2025
+// Last updated: 9 July 2025
 
 #ifndef DATAHANDLING_H
 #define DATAHANDLING_H
-
-#include "DataHandling.c"
 
 /* STATISTICS ================================*/
 
@@ -33,21 +31,6 @@ double dhSqrt(double value);
 
 //Returns the standard deviance of an array of data values
 double dhStdDev(double data[], char length);
-
-/*================================*/
-/* COMPLEX ================================*/
-
-// Returns the sum of two complex numbers
-dhComplex dhComplexAdd(dhComplex firstNum, dhComplex secondNum);
-
-// dhComplex dhComplexSub(dhComplex firstNum, dhComplex secondNum);
-// dhComplex dhComplexConjugate(dhComplex num);
-// dhComplex dhComplexMul(dhComplex firstNum, dhComplex secondNum);
-// dhComplex dhComplexDiv(dhComplex numerator, dhComplex denomenator);
-// double dhModulus( dhComplex complexNum);
-// double dhArgument(dhComplex complexNum);
-
-
 
 /*================================*/
 /* FOURIER ================================*/

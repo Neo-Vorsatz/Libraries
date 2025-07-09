@@ -1,7 +1,15 @@
 # Introduction
 This is a collection of libraries/modules I've programmed, often targetted towards electrical or embedded systems engineers.
  # Libraries
- ## DataHandling
+ ## ComplexNumbers [Warning: In Production]
+This module is for complex number operations in C.<br>
+With it, you can create, edit, and do computations with complex numbers, including but not limited to:
+- Complex number multiplication
+- Getting the magnitude of a complex number
+- Getting the conjugate of a complex number
+- Sine and cosine of an angle in radians
+
+ ## DataHandling [Warning: In Production]
 This module is for interpretting and processing data, including time-domain related operations, in C.<br>
 Some functionality this module offers is:
 - Getting the mean, variance and standard deviation of a set of data
