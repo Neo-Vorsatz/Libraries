@@ -40,6 +40,37 @@ double cnArgument(cnComplex complexNum){
 
 }
 
+//Euler's formula
+
+cnComplex eulerIdentity(double cnArgument){
+
+    double cosResult;
+    double sinResult;
+    cnComplex result;
+
+    // evaluate cos(number) using the Taylor series approach
+    double cosFirstTerm = 1.0;
+    double cosSecondTerm = pow(cnArgument,2)/2;
+    double cosThirdTerm = pow(cnArgument,4)/24;
+    double cosFourthTerm = pow(cnArgument,6)/720;
+
+    cosResult = cosFirstTerm - cosSecondTerm + cosThirdTerm - cosFourthTerm; // the result of the taylor series
+
+     // evaluate sin(number) using the Taylor series approach
+    double sinFirstTerm = cnArgument;
+    double sinSecondTerm = pow(cnArgument,3)/6;
+    double sinThirdTerm = pow(cnArgument,5)/120;
+    double sinFourthTerm = pow(cnArgument,7)/5040;
+
+    sinResult = sinFirstTerm - sinSecondTerm + sinThirdTerm - sinFourthTerm; // the result of the taylor series
+
+    result.real = cosResult;
+    result.imag = sinResult;
+
+    return result;
+
+}
+
 /*================================*/
 /* OPERATIONS ================================*/
 

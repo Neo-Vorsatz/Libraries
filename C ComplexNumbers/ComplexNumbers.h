@@ -45,6 +45,7 @@ cnComplex cnComplexAdd(cnComplex firstNum, cnComplex secondNum);
 // cnComplex cnComplexConjugate(cnComplex num);
 // cnComplex cnComplexMul(cnComplex firstNum, cnComplex secondNum);
 // cnComplex cnComplexDiv(cnComplex numerator, cnComplex denomenator);
+// cnComplex eulerIdentity(double cnArgument);
 
 /*================================*/
 
