@@ -11,17 +11,18 @@
 //Boolean
 typedef char cnBoolean_t;
 
-// typedef struct{
-//   double real;
-//   double imag;
-// } cnComplex;
+typedef struct{
+  double real;
+  double imag;
+  cnBoolean_t rect_form;
+} cnComplex;
 
 //Structure for complex number
-typedef struct {
-  double real_mag; //the real part or magnitude
-  double imag_arg; //the imaginary part of argument
-  cnBoolean_t rect_form; //whether the complex number is in rectangular form or not (otherwise in polar form)
-} complexNum;
+// typedef struct {
+//   double real_mag; //the real part or magnitude
+//   double imag_arg; //the imaginary part of argument
+//   cnBoolean_t rect_form; //whether the complex number is in rectangular form or not (otherwise in polar form)
+// } complexNum;
 
 /*================================*/
 /* WRITING ================================*/
