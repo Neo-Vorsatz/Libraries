@@ -1,7 +1,7 @@
 // Complex Numbers Library, for complex number operations
 // Header file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 9 July 2025
+// Last updated: 27 August 2025
 
 #ifndef COMPLEXNUMBERS_H
 #define COMPLEXNUMBERS_H
@@ -12,8 +12,8 @@
 typedef char cnBoolean_t;
 
 typedef struct{
-  double real;
-  double imag;
+  double real_mod; //real component or magnitude
+  double imag_arg; //imaginary component or phase
   cnBoolean_t rect_form;
 } cnComplex;
 
