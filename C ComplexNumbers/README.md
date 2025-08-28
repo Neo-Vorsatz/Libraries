@@ -1,6 +1,6 @@
 # C ComplexNumbers [Warning: In Production]
 ## Credits
-This module was made with the help of Ambesiwe Sonka.
+This module was made with the help of [Ambesiwe Sonka](https://github.com/Ambesiwe).
 
 ## Overview
 This module is for complex number operations in C.<br>

@@ -1,5 +1,5 @@
 # Introduction
-This is a collection of libraries/modules I've programmed, often targetted towards electrical or embedded systems engineers.
+This is a collection of libraries/modules I've programmed in C, targetted towards electrical or embedded systems engineers.
  # Libraries
  ## ComplexNumbers [Warning: In Production]
 This module is for complex number operations in C.<br>
@@ -14,6 +14,7 @@ This module is for interpretting and processing data, including time-domain rela
 Some functionality this module offers is:
 - Getting the mean, variance and standard deviation of a set of data
 - Getting the cumulative sum of data
+- Getting the energy and power of a signal
 
  ## Matrices
  This module is for matrix operations in C.<br>

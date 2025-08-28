@@ -1,6 +1,6 @@
 # C DataHandling [Warning: In Production]
 ## Credits
-This module was made with the help of Ambesiwe Sonka.
+This module was made with the help of [Ambesiwe Sonka](https://github.com/Ambesiwe).
 
 ## Overview
 Some functionality this module offers is:
