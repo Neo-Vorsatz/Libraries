@@ -1,7 +1,7 @@
 // Data Handling Library, for processing data
 // Implementation file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 9 July 2025
+// Last updated: 28 August 2025
 
 #include <math.h>
 #include "DataHandling.h"
@@ -80,6 +80,66 @@ double dhVar(double data[], char length) {
 double dhStdDev(double data[], char length) {
   //The standard deviance is the square-root of the variance
   return sqrt(dhVar(data, length));
+}
+
+/*================================*/
+/* ELECTRICITY ================================*/
+
+//Returns the Direct-Current component of a signal
+double dhDC(double signal[], char length) {
+  //Call the dhMean function
+  return dhMean(signal, length);
+}
+
+//Gets the power of the signal at each time step
+void dhPower(double write[], double signal[], char length) {
+  //For each data point
+  for (char i=0; i<length; i++) {
+    //Calculate the power
+    write[i] = signal[i]*signal[i];
+  }
+}
+
+//Returns the total energy of a signal
+double dhEnergy(double signal[], char length) {
+  //Create an array for the power of the signal
+  double power[length];
+  //Get the power of the signal
+  dhPower(power, signal, length);
+  //Return the sum of the power
+  return dhSum(power, length);
+}
+
+//Gets the cumulative sum of energy of a signal
+void dhCumSumEnergy(double write[], double signal[], char length) {
+  //Create an array for the power of the signal
+  double power[length];
+  //Get the power of the signal
+  dhPower(power, signal, length);
+  //Get the cumulative sum of the power
+  dhCumSum(write, power, length);
+}
+
+//Returns the average power of a signal
+double dhAvgPower(double signal[], char length) {
+  //Create an array for the power of the signal
+  double power[length];
+  //Get the power of the signal
+  dhPower(power, signal, length);
+  //Return the mean/average/expected value of the power
+  return dhMean(power, length);
+}
+
+//Returns the Alternating-Current Root-Mean-Square of a signal
+double dhACRMS(double signal[], char length) {
+  //Call the dhStdDev function
+  return dhStdDev(signal, length);
+}
+
+//Returns the Root-Mean_square of a signal
+double dhRMS(double signal[], double length) {
+  //The RMS is the square-root of the average power
+  return sqrt(dhAvgPower(signal, length));
 }
 
 /*================================*/
