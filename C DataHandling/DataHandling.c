@@ -91,6 +91,17 @@ double dhDC(double signal[], char length) {
   return dhMean(signal, length);
 }
 
+//Removes the Direct-Current offset from a signal
+void dhAC(double write[], double signal[], char length) {
+  //Get the DC component
+  double dc = dhMean(signal, length);
+  //For each data point
+  for (char i=0; i<length; i++) {
+    //Subtract the DC offset
+    write[i] = signal[i]-dc;
+  }
+}
+
 //Gets the power of the signal at each time step
 void dhPower(double write[], double signal[], char length) {
   //For each data point
@@ -136,10 +147,24 @@ double dhACRMS(double signal[], char length) {
   return dhStdDev(signal, length);
 }
 
-//Returns the Root-Mean_square of a signal
-double dhRMS(double signal[], double length) {
+//Returns the Root-Mean-Square of a signal
+double dhRMS(double signal[], char length) {
   //The RMS is the square-root of the average power
   return sqrt(dhAvgPower(signal, length));
+}
+
+//Returns the Direct-Current power of a signal
+double dhDCPower(double signal[], char length) {
+  //Get the DC component
+  double dc = dhMean(signal, length);
+  //Return the power of the DC component
+  return dc*dc;
+}
+
+//Returns the Alternating-Current power of a signal
+double dhACPower(double signal[], char length) {
+  //Call the dhVar function
+  return dhVar(signal, length);
 }
 
 /*================================*/
