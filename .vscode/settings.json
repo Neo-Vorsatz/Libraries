@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "datahandling.h": "c"
+        "datahandling.h": "c",
+        "complexnumbers.h": "c"
     }
 }

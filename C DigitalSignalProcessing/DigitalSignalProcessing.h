@@ -1,7 +1,7 @@
 // Digial Signal Processing Library, for processing signals
 // Header file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 28 August 2025
+// Last updated: 4 November 2025
 
 #ifndef DIGITALSIGNALPROCESSING_H
 #define DIGITALSIGNALPROCESSING_H
