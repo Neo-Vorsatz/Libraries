@@ -9,7 +9,7 @@
 /* TYPE DEFINITIONS ================================*/
 
 //Boolean
-typedef char cnBoolean_t;
+typedef int cnBoolean_t;
 
 typedef struct{
   double real_mod; //real component or magnitude

@@ -15,33 +15,33 @@
 /* ELECTRICITY ================================*/
 
 //Returns the Direct-Current component of a signal
-double dsDC(double signal[], char length) {
+double dsDC(double signal[], int length) {
   //Call the dhMean function
   return dhMean(signal, length);
 }
 
 //Removes the Direct-Current offset from a signal
-void dsAC(double write[], double signal[], char length) {
+void dsAC(double write[], double signal[], int length) {
   //Get the DC component
   double dc = dhMean(signal, length);
   //For each data point
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Subtract the DC offset
     write[i] = signal[i]-dc;
   }
 }
 
 //Gets the power of the signal at each time step
-void dsPower(double write[], double signal[], char length) {
+void dsPower(double write[], double signal[], int length) {
   //For each data point
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Calculate the power
     write[i] = signal[i]*signal[i];
   }
 }
 
 //Returns the total energy of a signal
-double dsEnergy(double signal[], char length) {
+double dsEnergy(double signal[], int length) {
   //Create an array for the power of the signal
   double power[length];
   //Get the power of the signal
@@ -51,7 +51,7 @@ double dsEnergy(double signal[], char length) {
 }
 
 //Gets the cumulative sum of energy of a signal
-void dsCumSumEnergy(double write[], double signal[], char length) {
+void dsCumSumEnergy(double write[], double signal[], int length) {
   //Create an array for the power of the signal
   double power[length];
   //Get the power of the signal
@@ -61,7 +61,7 @@ void dsCumSumEnergy(double write[], double signal[], char length) {
 }
 
 //Returns the average power of a signal
-double dsAvgPower(double signal[], char length) {
+double dsAvgPower(double signal[], int length) {
   //Create an array for the power of the signal
   double power[length];
   //Get the power of the signal
@@ -71,19 +71,19 @@ double dsAvgPower(double signal[], char length) {
 }
 
 //Returns the Alternating-Current Root-Mean-Square of a signal
-double dsACRMS(double signal[], char length) {
+double dsACRMS(double signal[], int length) {
   //Call the dhStdDev function
   return dhStdDev(signal, length);
 }
 
 //Returns the Root-Mean-Square of a signal
-double dsRMS(double signal[], char length) {
+double dsRMS(double signal[], int length) {
   //The RMS is the square-root of the average power
   return sqrt(dsAvgPower(signal, length));
 }
 
 //Returns the Direct-Current power of a signal
-double dsDCPower(double signal[], char length) {
+double dsDCPower(double signal[], int length) {
   //Get the DC component
   double dc = dhMean(signal, length);
   //Return the power of the DC component
@@ -91,7 +91,7 @@ double dsDCPower(double signal[], char length) {
 }
 
 //Returns the Alternating-Current power of a signal
-double dsACPower(double signal[], char length) {
+double dsACPower(double signal[], int length) {
   //Call the dhVar function
   return dhVar(signal, length);
 }

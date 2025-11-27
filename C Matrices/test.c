@@ -8,8 +8,8 @@
 #include <stdio.h>
 
 void printMatrix(matrix *read) {
-  for (char r=0; r<mxGetNumRows(read); r++) {
-    for (char c=0; c<mxGetNumColumns(read); c++) {
+  for (int r=0; r<mxGetNumRows(read); r++) {
+    for (int c=0; c<mxGetNumColumns(read); c++) {
       printf("%f ", mxReadElement(read, r, c));
     }
     printf("\n");
@@ -69,7 +69,7 @@ int main() {
 
   //Generating another arbitrary matrix
   mxElement_t column[3] = {5, 5, 5};
-  for (char c=0; c<3; c++) {
+  for (int c=0; c<3; c++) {
     mxWriteColumn_len(&m1, c, column, 3); //Note that I can edit 3 values of a column, even though the matrix only has 2 rows
   }
   mxSetSize(&m1,3,3);

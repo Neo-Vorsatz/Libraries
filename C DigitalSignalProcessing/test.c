@@ -5,9 +5,9 @@
 #include "DataHandling.c"
 #include <stdio.h>
 
-void printData(double data[], char length) {
+void printData(double data[], int length) {
     printf("{");
-    for (char i=0; i<length-1; i++) {
+    for (int i=0; i<length-1; i++) {
         printf("%.3f, ", data[i]);
     }
     printf("%.3f}", data[length-1]);
@@ -16,7 +16,7 @@ void printData(double data[], char length) {
 int main() {
   printf("=== Statistics ===");
   double testData[] = {1.0, 5.2, 7.3, 0.0, 2.9, 5.2, 13.4};
-  char length = sizeof(testData)/sizeof(testData[0]);
+  int length = sizeof(testData)/sizeof(testData[0]);
   printf("Test data: ");
   printData(testData, length);
   printf("\n");

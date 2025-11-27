@@ -8,7 +8,7 @@
 /* WRITING ================================*/
 
 //Sets the given matrix's values to the parameters
-mxBoolean_t mxSet(matrix *write, char rows, char columns, mxElement_t elements[SIZE][SIZE]) {
+mxBoolean_t mxSet(matrix *write, int rows, int columns, mxElement_t elements[SIZE][SIZE]) {
   //If the given rows or columns are too big
   if ((rows>SIZE)||(columns>SIZE)) {return 0;}
 
@@ -16,9 +16,9 @@ mxBoolean_t mxSet(matrix *write, char rows, char columns, mxElement_t elements[S
   write->rows = rows;
   write->columns = columns;
   //Repeat for each row
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //Repeat for each column
-    for (char c=0; c<SIZE; c++) {
+    for (int c=0; c<SIZE; c++) {
       //Replace the element
       write->elements[r][c] = elements[r][c];
     }
@@ -34,9 +34,9 @@ void mxCopy(matrix *write, matrix *read) {
   write->rows = read->rows;
   write->columns = read->columns;
   //For each row
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //For each column
-    for (char c=0; c<SIZE; c++) {
+    for (int c=0; c<SIZE; c++) {
       //Copy the element
       write->elements[r][c] = read->elements[r][c];
     }
@@ -44,7 +44,7 @@ void mxCopy(matrix *write, matrix *read) {
 }
 
 //Sets the number of rows and columns of the given matrix
-mxBoolean_t mxSetSize(matrix *write, char rows, char columns) {
+mxBoolean_t mxSetSize(matrix *write, int rows, int columns) {
   //If the given rows or columns are too big
   if ((rows>SIZE)||(columns>SIZE)) {return 0;}
 
@@ -57,7 +57,7 @@ mxBoolean_t mxSetSize(matrix *write, char rows, char columns) {
 }
 
 //Writes an entry into the given row and column of the given matrix
-mxBoolean_t mxWriteElement(matrix *write, char row, char column, mxElement_t entry) {
+mxBoolean_t mxWriteElement(matrix *write, int row, int column, mxElement_t entry) {
   //If the index is out of bounds
   if ((row+1>SIZE)||(column+1>SIZE)) {return 0;}
 
@@ -79,7 +79,7 @@ mxBoolean_t mxWriteElement(matrix *write, char row, char column, mxElement_t ent
 }
 
 //Rewrites the content of a row
-mxBoolean_t mxWriteRow_len(matrix *write, char index, mxElement_t *row, char arrLength) {
+mxBoolean_t mxWriteRow_len(matrix *write, int index, mxElement_t *row, int arrLength) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -89,7 +89,7 @@ mxBoolean_t mxWriteRow_len(matrix *write, char index, mxElement_t *row, char arr
     write->rows = index+1;
   }
   //Repeat for each element
-  for (char c=0; c<SIZE; c++) {
+  for (int c=0; c<SIZE; c++) {
     //If we've passed the end of the array
     if (c+1>arrLength) {
       //Fill the element with 0
@@ -105,12 +105,12 @@ mxBoolean_t mxWriteRow_len(matrix *write, char index, mxElement_t *row, char arr
 }
 
 //Rewrites the content of a row (assumes the array length is perfectly sized)
-mxBoolean_t mxWriteRow(matrix *write, char index, mxElement_t *row) {
+mxBoolean_t mxWriteRow(matrix *write, int index, mxElement_t *row) {
   return mxWriteRow_len(write, index, row, write->columns);
 }
 
 //Rewrites the content of a column
-mxBoolean_t mxWriteColumn_len(matrix *write, char index, mxElement_t *column, char arrLength) {
+mxBoolean_t mxWriteColumn_len(matrix *write, int index, mxElement_t *column, int arrLength) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -120,7 +120,7 @@ mxBoolean_t mxWriteColumn_len(matrix *write, char index, mxElement_t *column, ch
     write->columns = index+1;
   }
   //Repeat for each element
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //If we've passed the end of the array
     if (r+1>arrLength) {
       //Fill the element with 0
@@ -136,12 +136,12 @@ mxBoolean_t mxWriteColumn_len(matrix *write, char index, mxElement_t *column, ch
 }
 
 //Rewrites the content of a column (assumes the array length is perfectly sized)
-mxBoolean_t mxWriteColumn(matrix *write, char index, mxElement_t *column) {
+mxBoolean_t mxWriteColumn(matrix *write, int index, mxElement_t *column) {
   return mxWriteColumn_len(write, index, column, write->rows);
 }
 
 //Inserts a row of entries into the given index
-mxBoolean_t mxInsertRow_len(matrix *write, char index, mxElement_t *row, char arrLength) {
+mxBoolean_t mxInsertRow_len(matrix *write, int index, mxElement_t *row, int arrLength) {
   //If the matrix is too large
   if (write->rows==SIZE) {return 0;}
   //If the index is out of bounds
@@ -156,9 +156,9 @@ mxBoolean_t mxInsertRow_len(matrix *write, char index, mxElement_t *row, char ar
     write->rows++;
   }
   //Repeat for each column
-  for (char c=0; c<SIZE; c++) {
+  for (int c=0; c<SIZE; c++) {
     //Repeat for each element below the index, bottom to top
-    for (char r=SIZE; r>index; r--) {
+    for (int r=SIZE; r>index; r--) {
       //Replace the element with the one above it
       write->elements[r][c] = write->elements[r-1][c];
     }
@@ -177,12 +177,12 @@ mxBoolean_t mxInsertRow_len(matrix *write, char index, mxElement_t *row, char ar
 }
 
 //Inserts a row of entries into the given index (assumes the array length is perfectly sized)
-mxBoolean_t mxInsertRow(matrix *write, char index, mxElement_t *row) {
+mxBoolean_t mxInsertRow(matrix *write, int index, mxElement_t *row) {
   return mxInsertRow_len(write, index, row, write->columns);
 }
 
 //Appends a row of entries to the end of the matrix
-mxBoolean_t mxAppendRow_len(matrix *write, mxElement_t *row, char arrLength) {
+mxBoolean_t mxAppendRow_len(matrix *write, mxElement_t *row, int arrLength) {
   return mxInsertRow_len(write, write->rows, row, arrLength);
 }
 
@@ -192,7 +192,7 @@ mxBoolean_t mxAppendRow(matrix *write, mxElement_t *row) {
 }
 
 //Inserts a column of entries into the given index
-mxBoolean_t mxInsertColumn_len(matrix *write, char index, mxElement_t *column, char arrLength) {
+mxBoolean_t mxInsertColumn_len(matrix *write, int index, mxElement_t *column, int arrLength) {
   //If the matrix is too large
   if (write->columns==SIZE) {return 0;}
   //If the index is out of bounds
@@ -207,9 +207,9 @@ mxBoolean_t mxInsertColumn_len(matrix *write, char index, mxElement_t *column, c
     write->columns++;
   }
   //Repeat for each column
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //Repeat for each element right of the index, right to left
-    for (char c=SIZE; c>index; c--) {
+    for (int c=SIZE; c>index; c--) {
       //Replace the element with the one left of it
       write->elements[r][c] = write->elements[r][c-1];
     }
@@ -228,12 +228,12 @@ mxBoolean_t mxInsertColumn_len(matrix *write, char index, mxElement_t *column, c
 }
 
 //Inserts a column of entries into the given index (assumes the array length is perfectly sized)
-mxBoolean_t mxInsertColumn(matrix *write, char index, mxElement_t *column) {
+mxBoolean_t mxInsertColumn(matrix *write, int index, mxElement_t *column) {
   return mxInsertColumn_len(write, index, column, write->rows);
 }
 
 //Appends a column of entries to the end of the matrix
-mxBoolean_t mxAppendColumn_len(matrix *write, mxElement_t *column, char arrLength) {
+mxBoolean_t mxAppendColumn_len(matrix *write, mxElement_t *column, int arrLength) {
   return mxInsertColumn_len(write, write->columns, column, arrLength);
 }
 
@@ -243,7 +243,7 @@ mxBoolean_t mxAppendColumn(matrix *write, mxElement_t *column) {
 }
 
 //Deletes a row from the matrix
-mxBoolean_t mxDeleteRow(matrix *write, char index) {
+mxBoolean_t mxDeleteRow(matrix *write, int index) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -253,9 +253,9 @@ mxBoolean_t mxDeleteRow(matrix *write, char index) {
     write->rows--;
   }
   //Repeat for each column
-  for (char c=0; c<SIZE; c++) {
+  for (int c=0; c<SIZE; c++) {
     //Repeat for each element below (and including) the index, top to bottom
-    for (char r=index; r<SIZE; r++) {
+    for (int r=index; r<SIZE; r++) {
       //Replace the element with the one below it
       write->elements[r][c] = write->elements[r+1][c];
     }
@@ -266,7 +266,7 @@ mxBoolean_t mxDeleteRow(matrix *write, char index) {
 }
 
 //Deletes a column from the matrix
-mxBoolean_t mxDeleteColumn(matrix *write, char index) {
+mxBoolean_t mxDeleteColumn(matrix *write, int index) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -276,9 +276,9 @@ mxBoolean_t mxDeleteColumn(matrix *write, char index) {
     write->columns--;
   }
   //Repeat for each row
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //Repeat for each element right of (and including) the index, left to right
-    for (char c=index; c<SIZE; c++) {
+    for (int c=index; c<SIZE; c++) {
       //Replace the element with the one right of it
       write->elements[r][c] = write->elements[r][c+1];
     }
@@ -292,17 +292,17 @@ mxBoolean_t mxDeleteColumn(matrix *write, char index) {
 /* READING ================================*/
 
 //Returns the number of rows
-char mxGetNumRows(matrix *read) {
+int mxGetNumRows(matrix *read) {
   return read->rows;
 }
 
 //Returns the number of columns
-char mxGetNumColumns(matrix *read) {
+int mxGetNumColumns(matrix *read) {
   return read->columns;
 }
 
 //Returns the element in the given row and column
-mxElement_t mxReadElement(matrix *read, char row, char column) {
+mxElement_t mxReadElement(matrix *read, int row, int column) {
   //If the index is out of bounds
   if ((read->rows<row)||(read->columns<column)) {return 0;}
   //Returning the element
@@ -320,9 +320,9 @@ mxBoolean_t mxEqual(matrix *read1, matrix *read2) {
     return 0;
   }
   //For each row
-  for (char r=0; r<read1->rows; r++) {
+  for (int r=0; r<read1->rows; r++) {
     //For each column
-    for (char c=0; c<read1->columns; c++) {
+    for (int c=0; c<read1->columns; c++) {
       //If the entries are not the same
       if (read1->elements[r][c]!=read2->elements[r][c]) {
         //Then the matrices aren't equal
@@ -340,9 +340,9 @@ void mxZero(matrix *write) {
   write->rows = 0;
   write->columns = 0;
   //For each row
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //For each column
-    for (char c=0; c<SIZE; c++) {
+    for (int c=0; c<SIZE; c++) {
       //Replace the entry with 0
       write->elements[r][c] = 0;
     }
@@ -350,7 +350,7 @@ void mxZero(matrix *write) {
 }
 
 //Turns a matrix into the identity matrix with a particular size
-mxBoolean_t mxIdentity(matrix *write, char size) {
+mxBoolean_t mxIdentity(matrix *write, int size) {
   //If the size is too large
   if (size>SIZE) {return 0;}
 
@@ -358,9 +358,9 @@ mxBoolean_t mxIdentity(matrix *write, char size) {
   write->rows = size;
   write->columns = size;
   //For each row
-  for (char r=0; r<size; r++) {
+  for (int r=0; r<size; r++) {
     //For each column
-    for (char c=0; c<size; c++) {
+    for (int c=0; c<size; c++) {
       //If this entry is on the diagonal
       if (r==c) {
         //Replace the entry with 1
@@ -391,9 +391,9 @@ mxBoolean_t mxAdd(matrix *write, matrix *read1, matrix *read2) {
   write->rows = m1.rows;
   write->columns = m1.columns;
   //For each row
-  for (char r=0; r<m1.rows; r++) {
+  for (int r=0; r<m1.rows; r++) {
     //For each column
-    for (char c=0; c<m1.columns; c++) {
+    for (int c=0; c<m1.columns; c++) {
       //Write the sum of the two entries
       write->elements[r][c] = m1.elements[r][c] + m2.elements[r][c];
     }
@@ -409,9 +409,9 @@ void mxScale(matrix *write, matrix *read, double factor) {
   write->rows = read->rows;
   write->columns = read->columns;
   //For each row
-  for (char r=0; r<read->rows; r++) {
+  for (int r=0; r<read->rows; r++) {
     //For each column
-    for (char c=0; c<read->columns; c++) {
+    for (int c=0; c<read->columns; c++) {
       write->elements[r][c] = read->elements[r][c] * factor;
     }
   }
@@ -432,13 +432,13 @@ mxBoolean_t mxMultiply(matrix *write, matrix *read1, matrix *read2) {
   write->rows = m1.rows;
   write->columns = m2.columns;
   //For each row
-  for (char r=0; r<write->rows; r++) {
+  for (int r=0; r<write->rows; r++) {
     //For each column
-    for (char c=0; c<write->columns; c++) {
+    for (int c=0; c<write->columns; c++) {
       //Set the cumulative sum to 0
       mxElement_t sum = 0;
       //For each term
-      for (char i=0; i<m1.columns; i++) {
+      for (int i=0; i<m1.columns; i++) {
         //Increase the sum by the product
         sum += m1.elements[r][i] * m2.elements[i][c];
       }
@@ -461,12 +461,12 @@ mxElement_t mxDeterminant(matrix *read) {
   //Set the determinant to 0 initially
   mxElement_t determinant = 0;
   //Set the sign to positive
-  signed char sign = 1;
+  signed int sign = 1;
   //Get memory for the submatrix
   matrix submatrix;
 
   //For each element in the first row
-  for (char c=0; c<read->columns; c++) {
+  for (int c=0; c<read->columns; c++) {
     //Copy the contents to the submatrix
     mxCopy(&submatrix, read);
     //Delete the first row of the submatrix
@@ -494,9 +494,9 @@ void mxTranspose(matrix *write, matrix *read) {
   write->rows = m.columns;
   write->columns = m.rows;
   //For each row
-  for (char r=0; r<SIZE; r++) {
+  for (int r=0; r<SIZE; r++) {
     //For each column
-    for (char c=0; c<SIZE; c++) {
+    for (int c=0; c<SIZE; c++) {
       //Copy the element into the transposed-position
       write->elements[c][r] = m.elements[r][c];
     }
@@ -519,9 +519,9 @@ mxBoolean_t mxAdjoint(matrix *write, matrix *read) {
   //Get memory for the submatrix
   matrix submatrix;
   //For each row
-  for (char r=0; r<m.rows; r++) {
+  for (int r=0; r<m.rows; r++) {
     //For each column
-    for (char c=0; c<m.columns; c++) {
+    for (int c=0; c<m.columns; c++) {
       //Copy the contents to the submatrix
       mxCopy(&submatrix, &m);
       //Delete the corresponding row of the submatrix
@@ -557,7 +557,7 @@ mxBoolean_t mxInverse(matrix *write, matrix *read) {
 }
 
 //Solves for a particular element within a particular vector using Cramer's rule
-mxElement_t mxSolveCramer(matrix *transform, matrix *result, char vector, char index) {
+mxElement_t mxSolveCramer(matrix *transform, matrix *result, int vector, int index) {
   //If it's not a square matrix
   if (transform->rows!=transform->columns) {return 0;}
   //If the vector number is out of bounds
@@ -573,7 +573,7 @@ mxElement_t mxSolveCramer(matrix *transform, matrix *result, char vector, char i
   matrix m;
   mxCopy(&m, transform);
   //For each index in the resulting vector
-  for (char i=0; i<result->rows; i++) {
+  for (int i=0; i<result->rows; i++) {
     //Copy this entry to the new matrix
     m.elements[i][index] = result->elements[i][vector];
   }
@@ -611,11 +611,11 @@ void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix 
   /* When a column with no non-zero pivot is found, it introduces a free-variable.
   The row of the next pivot will be the same row there should've been a pivot,
   so the row for any pivot we're looking for is columnNum minus numOfFreeVariables */
-  char numFreeVar = 0;
+  int numFreeVar = 0;
   //For each index along the diagonal
-  for (char i=0; (i<writeReduce->columns)&&(i-numFreeVar<writeReduce->rows); i++) {
+  for (int i=0; (i<writeReduce->columns)&&(i-numFreeVar<writeReduce->rows); i++) {
     //The starting row to consider for a pivot is on the diagonal, minus the free variables found
-    char r = i-numFreeVar;
+    int r = i-numFreeVar;
     //Search for a non-zero pivot
     while ((writeReduce->elements[r][i]==0)&&(r+1<writeReduce->rows)) {r++;}
 
@@ -626,7 +626,7 @@ void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix 
     } else {
       /* Swap the pivot row and the row with a non-zero pivot */
       //For each column after the completed columns, in the matrix we're reducing
-      for (char c=i; c<writeReduce->columns; c++) {
+      for (int c=i; c<writeReduce->columns; c++) {
         //Temporarily store the value from the main row
         mxElement_t temp = writeReduce->elements[i-numFreeVar][c];
         //Replace the value in the main row
@@ -635,7 +635,7 @@ void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix 
         writeReduce->elements[r][c] = temp;
       }
       //For each column in the collateral matrix
-      for (char c=0; c<writeCollateral->columns; c++) {
+      for (int c=0; c<writeCollateral->columns; c++) {
         //Temporarily store the value from the main row
         mxElement_t temp = writeCollateral->elements[i-numFreeVar][c];
         //Replace the value in the main row
@@ -646,19 +646,19 @@ void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix 
 
       /* Reduce this column */
       //For each row
-      for (char r=0; r<writeReduce->rows; r++) {
+      for (int r=0; r<writeReduce->rows; r++) {
         //If this row isn't the pivot
         if (r!=i-numFreeVar) {
           //Set the scalar multiple needed
           double scalar = writeReduce->elements[r][i]/writeReduce->elements[i-numFreeVar][i];
           /* Perform the row operation */
           //For each column after the completed columns, in the matrix we're reducing
-          for (char c=i; c<writeReduce->columns; c++) {
+          for (int c=i; c<writeReduce->columns; c++) {
             //Decrease each element in the row by the scalar multiple of the pivot row
             writeReduce->elements[r][c] -= scalar*writeReduce->elements[i-numFreeVar][c];
           }
           //For each column in the collateral matrix
-          for (char c=0; c<writeCollateral->columns; c++) {
+          for (int c=0; c<writeCollateral->columns; c++) {
             //Decrease each element in the row by the scalar multiple of the pivot row
             writeCollateral->elements[r][c] -= scalar*writeCollateral->elements[i-numFreeVar][c];
           }
@@ -699,15 +699,15 @@ mxBoolean_t mxSolveGauss(matrix *write, matrix *transform, matrix *result) {
   //Whether a variable has been solved for or not
   mxBoolean_t solved[transform0.columns];
   //Note that none of the variables have been solved for
-  for (char i=0; i<transform0.columns; i++) {solved[i] = 0;}
+  for (int i=0; i<transform0.columns; i++) {solved[i] = 0;}
   //For each row in the transformation
-  for (char r=0; r<transform0.rows; r++) {
+  for (int r=0; r<transform0.rows; r++) {
     //Start with the first column
-    char c=0;
+    int c=0;
     //Search for the pivot, left to right
     while ((transform0.elements[r][c]==0)&&(c+1<transform0.columns)) {c++;}
     //For each output vector
-    for (char v=0; v<result0.columns; v++) {
+    for (int v=0; v<result0.columns; v++) {
       //If no pivot was found
       if (transform0.elements[r][c]==0) {
         //If the result is non-zero
@@ -724,11 +724,11 @@ mxBoolean_t mxSolveGauss(matrix *write, matrix *transform, matrix *result) {
     }
   }
   //For each variable
-  for (char i=0; i<transform0.columns; i++) {
+  for (int i=0; i<transform0.columns; i++) {
     //If this variable was not solved for
     if (!solved[i]) {
       //For each vector
-      for (char v=0; v<result0.columns; v++) {
+      for (int v=0; v<result0.columns; v++) {
         //Set the solution to 0
         write->elements[i][v] = 0;
       }

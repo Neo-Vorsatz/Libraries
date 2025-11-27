@@ -9,11 +9,11 @@
 /* SUMMING ================================*/
 
 //Returns the sum of an array of data values
-double dhSum(double data[], char length) {
+double dhSum(double data[], int length) {
   //Initialise the sum
   double sum = 0.0;
   //For each data point
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Add the data point to the sum
     sum += data[i];
   }
@@ -22,11 +22,11 @@ double dhSum(double data[], char length) {
 }
 
 //Gets the cumulative sum of an array of data values
-void dhCumSum(double write[], double data[], char length) {
+void dhCumSum(double write[], double data[], int length) {
   //Initialise the sum
   double sum = 0.0;
   //For each data point
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Add the data point to the sum
     sum += data[i];
     //Write the cumulative sum to the corresponding index
@@ -38,7 +38,7 @@ void dhCumSum(double write[], double data[], char length) {
 /* STATISTICS ================================*/
 
 //Returns the mean/average/expected value of an array of data values
-double dhMean(double data[], char length) {
+double dhMean(double data[], int length) {
   //Get the sum
   double sum = dhSum(data, length);
   //Return the average
@@ -46,25 +46,25 @@ double dhMean(double data[], char length) {
 }
 
 //Returns the mean/average/expected value of an array of data values
-double dhAvg(double data[], char length) {
+double dhAvg(double data[], int length) {
   //Call the dhMean function
   return dhMean(data, length);
 }
 
 //Returns the mean/average/expected value of an array of data values
-double dhExpectedValue(double data[], char length) {
+double dhExpectedValue(double data[], int length) {
   //Call the dhMean function
   return dhMean(data, length);
 }
 
 //Returns the varience of an array of data values, assuming the data represents the population
-double dhVar(double data[], char length) {
+double dhVar(double data[], int length) {
   //Initialise an array of square-differences
   double sqrDiff[length];
   //Get the mean/average/expected value
   double mean = dhMean(data, length);
   //For each data point
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Get the difference
     double diff = data[i]-mean;
     //Save the squared difference
@@ -75,7 +75,7 @@ double dhVar(double data[], char length) {
 }
 
 //Returns the standard deviance of an array of data values, assuming the data represents the population
-double dhStdDev(double data[], char length) {
+double dhStdDev(double data[], int length) {
   //The standard deviance is the square-root of the variance
   return sqrt(dhVar(data, length));
 }
@@ -84,11 +84,11 @@ double dhStdDev(double data[], char length) {
 /* SORTING ================================*/
 
 //Copies an array of data into another array
-void dhCopy(double write[], double data[], char length) {
+void dhCopy(double write[], double data[], int length) {
   //If the pointers aren't identical
   if (write!=data) {
     //For each data point
-    for (char i=0; i<length; i++) {
+    for (int i=0; i<length; i++) {
       //Copy the data point
       write[i] = data[i];
     }
@@ -96,14 +96,14 @@ void dhCopy(double write[], double data[], char length) {
 }
 
 //Recursive function used in Quick Sort
-static void qsort_recursive(double array[], char low, char high) {
+static void qsort_recursive(double array[], int low, int high) {
   if (low<high) {
     //Choose last element in the range as the pivot
-    char pivot = array[high];
+    int pivot = array[high];
     //Index of the new partition
-    char part_i = low;
+    int part_i = low;
     //For each element within the partition range, except the last element
-    for (char i=low; i<high; i++) {
+    for (int i=low; i<high; i++) {
       //If this element is smaller than the pivot
       if (array[i]<pivot) {
         //Place this element left of the new partition, via a swap
@@ -125,7 +125,7 @@ static void qsort_recursive(double array[], char low, char high) {
 }
 
 //Sorts the data in ascending order using the Quick Sort algorithm
-void dhQuickSort(double write[], double data[], char length) {
+void dhQuickSort(double write[], double data[], int length) {
   //Copy the contents from the source to the destination
   dhCopy(write, data, length);
   //Call the recursive function
@@ -133,22 +133,22 @@ void dhQuickSort(double write[], double data[], char length) {
 }
 
 //Recursive function used in Merge Sort
-static void msort_recursive(double array[], double temp[], char low, char high) {
+static void msort_recursive(double array[], double temp[], int low, int high) {
   //If the range is not empty
   if (low<high) {
     //Calculate the midpoint
-    char mid = (low+high)/2;
+    int mid = (low+high)/2;
     //Recursively sort the first half of elements
     msort_recursive(array, temp, low, mid);
     //Recursively sort the second half of elements
     msort_recursive(array, temp, mid+1, high);
     
     //Index for the first half
-    char i_1st = low;
+    int i_1st = low;
     //Index fo the second half
-    char i_2nd  = mid+1;
+    int i_2nd  = mid+1;
     //Index for the merged array
-    char i_merge = low;
+    int i_merge = low;
     //While both first and second arrays have elements left
     while (i_1st<=mid && i_2nd<=high) {
       //If the first half has a smaller element than the second
@@ -172,7 +172,7 @@ static void msort_recursive(double array[], double temp[], char low, char high) 
     }
 
     //For each element in the sorted array
-    for (char i=low; i<=high; i++) {
+    for (int i=low; i<=high; i++) {
       //Copy the element into the original array
       array[i] = temp[i];
     }
@@ -180,7 +180,7 @@ static void msort_recursive(double array[], double temp[], char low, char high) 
 }
 
 //Sorts the data in ascending order using the Merge Sort algorithm
-void dhMergeSort(double write[], double data[], char length) {
+void dhMergeSort(double write[], double data[], int length) {
   //Copy the contents from the source to the destination
   dhCopy(write, data, length);
   //Create temporary array for merging
@@ -190,16 +190,16 @@ void dhMergeSort(double write[], double data[], char length) {
 }
 
 //Reverses the elements in an array
-void dhReverse(double write[], double data[], char length) {
+void dhReverse(double write[], double data[], int length) {
   //Create temporary array for reversing
   double temp[length];
   //For each element in the original array
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Copy the element from the original array to the temporary array
     temp[length-1-i] = data[i];
   }
   //For each element in the temporary array
-  for (char i=0; i<length; i++) {
+  for (int i=0; i<length; i++) {
     //Copy the element from the temporary array to the output
     write[i] = temp[i];
   }

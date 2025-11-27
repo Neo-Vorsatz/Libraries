@@ -15,12 +15,12 @@ typedef double mxElement_t; //Change the type of "mxElement_t" to change the num
 /* TYPE DEFINITIONS ================================*/
 
 //Boolean
-typedef char mxBoolean_t;
+typedef int mxBoolean_t;
 
 //Structure for matrices
 typedef struct {
-  unsigned char rows;
-  unsigned char columns;
+  unsigned int rows;
+  unsigned int columns;
   mxElement_t elements[SIZE][SIZE];
 } matrix;
 
@@ -28,70 +28,70 @@ typedef struct {
 /* WRITING ================================*/
 
 //Sets the given matrix's values to the parameters
-mxBoolean_t mxSet(matrix *write, char rows, char columns, mxElement_t elements[SIZE][SIZE]);
+mxBoolean_t mxSet(matrix *write, int rows, int columns, mxElement_t elements[SIZE][SIZE]);
 
 //Copies the second matrix's data onto the first
 void mxCopy(matrix *write, matrix *read);
 
 //Sets the number of rows and columns of the given matrix
-mxBoolean_t mxSetSize(matrix *write, char rows, char columns);
+mxBoolean_t mxSetSize(matrix *write, int rows, int columns);
 
 //Writes an entry into the given row and column of the given matrix
-mxBoolean_t mxWriteElement(matrix *write, char row, char column, mxElement_t entry);
+mxBoolean_t mxWriteElement(matrix *write, int row, int column, mxElement_t entry);
 
 //Rewrites the content of a row
-mxBoolean_t mxWriteRow_len(matrix *write, char index, mxElement_t *row, char arrLength);
+mxBoolean_t mxWriteRow_len(matrix *write, int index, mxElement_t *row, int arrLength);
 
 //Rewrites the content of a row (assumes the array length is perfectly sized)
-mxBoolean_t mxWriteRow(matrix *write, char index, mxElement_t *row);
+mxBoolean_t mxWriteRow(matrix *write, int index, mxElement_t *row);
 
 //Rewrites the content of a column
-mxBoolean_t mxWriteColumn_len(matrix *write, char index, mxElement_t *column, char arrLength);
+mxBoolean_t mxWriteColumn_len(matrix *write, int index, mxElement_t *column, int arrLength);
 
 //Rewrites the content of a column (assumes the array length is perfectly sized)
-mxBoolean_t mxWriteColumn(matrix *write, char index, mxElement_t *column);
+mxBoolean_t mxWriteColumn(matrix *write, int index, mxElement_t *column);
 
 //Inserts a row of entries into the given index
-mxBoolean_t mxInsertRow_len(matrix *write, char index, mxElement_t *row, char arrLength);
+mxBoolean_t mxInsertRow_len(matrix *write, int index, mxElement_t *row, int arrLength);
 
 //Inserts a row of entries into the given index (assumes the array length is perfectly sized)
-mxBoolean_t mxInsertRow(matrix *write, char index, mxElement_t *row);
+mxBoolean_t mxInsertRow(matrix *write, int index, mxElement_t *row);
 
 //Appends a row of entries to the end of the matrix
-mxBoolean_t mxAppendRow_len(matrix *write, mxElement_t *row, char arrLength);
+mxBoolean_t mxAppendRow_len(matrix *write, mxElement_t *row, int arrLength);
 
 //Appends a row of entries to the end of the matrix (assumes the array length is perfectly sized)
 mxBoolean_t mxAppendRow(matrix *write, mxElement_t *row);
 
 //Inserts a column of entries into the given index
-mxBoolean_t mxInsertColumn_len(matrix *write, char index, mxElement_t *column, char arrLength);
+mxBoolean_t mxInsertColumn_len(matrix *write, int index, mxElement_t *column, int arrLength);
 
 //Inserts a column of entries into the given index (assumes the array length is perfectly sized)
-mxBoolean_t mxInsertColumn(matrix *write, char index, mxElement_t *column);
+mxBoolean_t mxInsertColumn(matrix *write, int index, mxElement_t *column);
 
 //Appends a column of entries to the end of the matrix
-mxBoolean_t mxAppendColumn_len(matrix *write, mxElement_t *column, char arrLength);
+mxBoolean_t mxAppendColumn_len(matrix *write, mxElement_t *column, int arrLength);
 
 //Appends a column of entries to the end of the matrix (assumes the array length is perfectly sized)
 mxBoolean_t mxAppendColumn(matrix *write, mxElement_t *column);
 
 //Deletes a row from the matrix
-mxBoolean_t mxDeleteRow(matrix *write, char index);
+mxBoolean_t mxDeleteRow(matrix *write, int index);
 
 //Deletes a column from the matrix
-mxBoolean_t mxDeleteColumn(matrix *write, char index);
+mxBoolean_t mxDeleteColumn(matrix *write, int index);
 
 /*================================*/
 /* READING ================================*/
 
 //Returns the number of rows
-char mxGetNumRows(matrix *read);
+int mxGetNumRows(matrix *read);
 
 //Returns the number of columns
-char mxGetNumColumns(matrix *read);
+int mxGetNumColumns(matrix *read);
 
 //Returns the element in the given row and column
-mxElement_t mxReadElement(matrix *read, char row, char column);
+mxElement_t mxReadElement(matrix *read, int row, int column);
 
 /*================================*/
 /* OPERATIONS ================================*/
@@ -103,7 +103,7 @@ mxBoolean_t mxEqual(matrix *read1, matrix *read2);
 void mxZero(matrix *write);
 
 //Turns a matrix into the identity matrix with a particular size
-mxBoolean_t mxIdentity(matrix *write, char size);
+mxBoolean_t mxIdentity(matrix *write, int size);
 
 //Adds the second matrix to the first
 mxBoolean_t mxAdd(matrix *write, matrix *read1, matrix *read2);
@@ -127,7 +127,7 @@ mxBoolean_t mxAdjoint(matrix *write, matrix *read);
 mxBoolean_t mxInverse(matrix *write, matrix *read);
 
 //Solves for a particular element within a particular vector using Cramer's rule
-mxElement_t mxSolveCramer(matrix *transform, matrix *result, char vector, char index);
+mxElement_t mxSolveCramer(matrix *transform, matrix *result, int vector, int index);
 
 //Solves for all vectors using the inverse of the transformation
 mxBoolean_t mxSolveInverse(matrix *write, matrix *transform, matrix *result);

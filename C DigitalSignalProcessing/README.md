@@ -17,31 +17,31 @@ This module requires the DataHandling and ComplexNumbers modules to work. It's r
 
 ## Functions
 ### Electricity
-`double dhDC(double signal[], char length);`<br>
+`double dhDC(double signal[], int length);`<br>
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the Direct-Current component of a signal.
 
-`void dhAC(double write[], double signal[], char length);`<br>
+`void dhAC(double write[], double signal[], int length);`<br>
 Removes the Direct-Current offset from a signal.<br>
 Takes a pointer to where the modified signal will be written, a pointer to the array of the signal, and the number of time steps.
 
-`void dhPower(double write[], double signal[], char length);`<br>
+`void dhPower(double write[], double signal[], int length);`<br>
 Gets the power of the signal at each time step.<br>
 Takes a pointer to where the power of the signal will be written, a pointer to the array of the signal, and the number of time steps.
 
-`double dhEnergy(double signal[], char length);`<br>
+`double dhEnergy(double signal[], int length);`<br>
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the total energy of a signal.
 
-`void dhCumSumEnergy(double write[], double signal[], char length);`<br>
+`void dhCumSumEnergy(double write[], double signal[], int length);`<br>
 Gets the cumulative sum of energy of a signal.<br>
 Takes a pointer to where the cumulative sum of energy will be written, a pointer to the array of the signal, and the number of time steps.
 
-`double dhAvgPower(double signal[], char length);`<br>
+`double dhAvgPower(double signal[], int length);`<br>
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the average power of a signal.
 
-`double dhACRMS(double signal[], char length);`<br>
+`double dhACRMS(double signal[], int length);`<br>
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the Alternating-Current Root-Mean-Square of a signal.
 
@@ -49,11 +49,11 @@ Returns the Alternating-Current Root-Mean-Square of a signal.
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the Root-Mean-Square of a signal.
 
-`double dhDCPower(double signal[], char length);`<br>
+`double dhDCPower(double signal[], int length);`<br>
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the Direct-Current power of a signal.
 
-`double dhACPower(double signal[], char length);`<br>
+`double dhACPower(double signal[], int length);`<br>
 Takes a pointer to the array of the signal, and the number of time steps.<br>
 Returns the Alternating-Current power of a signal.
 
