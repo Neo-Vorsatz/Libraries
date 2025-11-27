@@ -99,7 +99,7 @@ void dhCopy(double write[], double data[], int length) {
 static void qsort_recursive(double array[], int low, int high) {
   if (low<high) {
     //Choose last element in the range as the pivot
-    int pivot = array[high];
+    double pivot = array[high];
     //Index of the new partition
     int part_i = low;
     //For each element within the partition range, except the last element
