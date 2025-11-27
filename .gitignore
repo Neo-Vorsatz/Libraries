@@ -1,2 +1,2 @@
-test.exe #the executables created when running test.c
+*.exe #the executables created when running test.c
 .vscode/ #the VS Code settings
