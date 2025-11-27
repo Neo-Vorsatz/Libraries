@@ -124,7 +124,7 @@ static void qsort_recursive(double array[], int low, int high) {
   }
 }
 
-//Sorts the data in ascending order using the Quick Sort algorithm
+//Sorts an array of data in ascending order using the Quick Sort algorithm
 void dhQuickSort(double write[], double data[], int length) {
   //Copy the contents from the source to the destination
   dhCopy(write, data, length);
@@ -179,7 +179,7 @@ static void msort_recursive(double array[], double temp[], int low, int high) {
   }
 }
 
-//Sorts the data in ascending order using the Merge Sort algorithm
+//Sorts an array of data in ascending order using the Merge Sort algorithm
 void dhMergeSort(double write[], double data[], int length) {
   //Copy the contents from the source to the destination
   dhCopy(write, data, length);

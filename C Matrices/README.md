@@ -27,16 +27,16 @@ then myMatrix will be a matrix struct.
 ### Writing
 `mxBoolean_t mxSet(matrix *write, int rows, int columns, mxElement_t elements[SIZE][SIZE]);`<br>
 Sets the given matrix's values to the parameters.<br>
-Takes a pointer to the matrix, a number of rows, a number of columns, and a 2D array of the elements.<br>
+Takes a pointer to the matrix, the number of rows, the number of columns, and a 2D array of the elements.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
 `void mxCopy(matrix *write, matrix *read);`<br>
 Copies the second matrix's data onto the first.<br>
-Takes a pointer to the matrix that is being copied to, and another pointer to the matrix that is being copied from.
+Takes a pointer to the matrix that is being copied to, and a pointer to the matrix that is being copied from.
 
 `mxBoolean_t mxSetSize(matrix *write, int rows, int columns);`<br>
 Sets the number of rows and columns of the given matrix.<br>
-Takes a pointer to the matrix, a number of rows, and a number of columns.<br>
+Takes a pointer to the matrix, the number of rows, and the number of columns.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
 `mxBoolean_t mxWriteElement(matrix *write, int row, int column, mxElement_t entry);`<br>
@@ -154,7 +154,7 @@ Scales/Multiplies the given matrix by a factor.<br>
 Takes a pointer to where the result will be written, a pointer to the matrix, the value of the factor/scalar.<br>
 
 `mxBoolean_t mxMultiply(matrix *write, matrix *read1, matrix *read2);`<br>
-Multiplies the matrices.<br>
+Multiplies two matrices.<br>
 Takes a pointer to where the result will be written, a pointer to the first matrix (transformation), and a pointer to the second matrix (vector).<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
@@ -178,7 +178,7 @@ Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
 `mxElement_t mxSolveCramer(matrix *transform, matrix *result, int vector, int index);`<br>
 Solves for a particular element within a particular vector using Cramer's rule.<br>
-Takes a pointer to the transformation matrix, a pointer to the resultant matrix, the index of the vector being solved for, and the index of the element of that matrix.<br>
+Takes a pointer to the transformation matrix, a pointer to the resultant matrix, the index of the vector being solved for, and the index of the element of that vector.<br>
 Returns the value of the particular element in the particular vector, or returns 0 if there are no solutions, or returns 1 if there are infinite solutions.
 
 `mxBoolean_t mxSolveInverse(matrix *write, matrix *transform, matrix *result);`<br>

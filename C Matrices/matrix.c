@@ -1,7 +1,7 @@
 // Matrices Library, for matrix operations
 // Implementation file
 // by Neo Vorsatz
-// Last updated: 9 July 2025
+// Last updated: 27 November 2025
 
 #include "matrix.h"
 

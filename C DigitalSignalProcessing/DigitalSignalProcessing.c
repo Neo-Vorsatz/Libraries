@@ -1,7 +1,7 @@
 // Digial Signal Processing Library, for processing signals
 // Implementation file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 4 November 2025
+// Last updated: 27 November 2025
 
 #include <math.h>
 #include "DigitalSignalProcessing.h"
