@@ -1,7 +1,7 @@
 // Data Handling Library, for processing data
 // Implementation file
 // by Neo Vorsatz
-// Last updated: 4 November 2025
+// Last updated: 27 November 2025
 
 #include <math.h>
 #include "DataHandling.h"
@@ -130,6 +130,79 @@ void dhQuickSort(double write[], double data[], char length) {
   dhCopy(write, data, length);
   //Call the recursive function
   qsort_recursive(write, 0, length-1);
+}
+
+//Recursive function used in Merge Sort
+static void msort_recursive(double array[], double temp[], char low, char high) {
+  //If the range is not empty
+  if (low<high) {
+    //Calculate the midpoint
+    char mid = (low+high)/2;
+    //Recursively sort the first half of elements
+    msort_recursive(array, temp, low, mid);
+    //Recursively sort the second half of elements
+    msort_recursive(array, temp, mid+1, high);
+    
+    //Index for the first half
+    char i_1st = low;
+    //Index fo the second half
+    char i_2nd  = mid+1;
+    //Index for the merged array
+    char i_merge = low;
+    //While both first and second arrays have elements left
+    while (i_1st<=mid && i_2nd<=high) {
+      //If the first half has a smaller element than the second
+      if (array[i_1st] < array[i_2nd]) {
+        //Add the element from the first half
+        temp[i_merge++] = array[i_1st++];
+      } else {
+        //Add the element from the second half
+        temp[i_merge++] = array[i_2nd++];
+      }
+    }
+    //While there are remaining elements from the first half
+    while (i_1st<=mid) {
+      //Add the element from the first half
+      temp[i_merge++] = array[i_1st++];
+    }
+    //While there are remaining elements from the second half
+    while (i_2nd<=high) {
+      //Add the element from the second half
+      temp[i_merge++] = array[i_2nd++];
+    }
+
+    //For each element in the sorted array
+    for (char i=low; i<=high; i++) {
+      //Copy the element into the original array
+      array[i] = temp[i];
+    }
+  }
+}
+
+//Sorts the data in ascending order using the Merge Sort algorithm
+void dhMergeSort(double write[], double data[], char length) {
+  //Copy the contents from the source to the destination
+  dhCopy(write, data, length);
+  //Create temporary array for merging
+  double temp[length];
+  //Call the recursive function
+  msort_recursive(write, temp, 0, length-1);
+}
+
+//Reverses the elements in an array
+void dhReverse(double write[], double data[], char length) {
+  //Create temporary array for reversing
+  double temp[length];
+  //For each element in the original array
+  for (char i=0; i<length; i++) {
+    //Copy the element from the original array to the temporary array
+    temp[length-1-i] = data[i];
+  }
+  //For each element in the temporary array
+  for (char i=0; i<length; i++) {
+    //Copy the element from the temporary array to the output
+    write[i] = temp[i];
+  }
 }
 
 /*================================*/

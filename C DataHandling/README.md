@@ -52,3 +52,11 @@ Takes a pointer to where the copy will be written, a pointer to the array of dat
 `void dhQuickSort(double write[], double data[], char length);`<br>
 Sorts an array of data in ascending order using the Quick Sort algorithm.<br>
 Takes a pointer to where the sorted data will be written, a pointer to the array of data values, and the number of data values.
+
+`void dhMergeSort(double write[], double data[], char length);`<br>
+Sorts the data in ascending order using the Merge Sort algorithm.<br>
+Takes a pointer to where the sorted data will be written, a pointer to the array of data values, and the number of data values.
+
+`void dhReverse(double write[], double data[], char length);`<br>
+Reverses the elements in an array.<br>
+Takes a pointer to where the reversed array will be written, a pointer to the array of data values, and the number of data values.

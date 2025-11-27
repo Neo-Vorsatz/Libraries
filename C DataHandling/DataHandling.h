@@ -1,7 +1,7 @@
 // Data Handling Library, for processing data
 // Header file
 // by Neo Vorsatz
-// Last updated: 4 November 2025
+// Last updated: 27 November 2025
 
 #ifndef DATAHANDLING_H
 #define DATAHANDLING_H
@@ -40,6 +40,12 @@ void dhCopy(double write[], double data[], char length);
 
 //Sorts an array of data in ascending order using the Quick Sort algorithm
 void dhQuickSort(double write[], double data[], char length);
+
+//Sorts the data in ascending order using the Merge Sort algorithm
+void dhMergeSort(double write[], double data[], char length);
+
+//Reverses the elements in an array
+void dhReverse(double write[], double data[], char length);
 
 /*================================*/
 
