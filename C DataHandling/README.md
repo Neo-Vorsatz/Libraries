@@ -1,8 +1,8 @@
-# C DataHandling [Warning: In Production]
+# C DataHandling
 ## Overview
 Some functionality this module offers is:
-- Getting the mean, variance and standard deviation of a set of data
 - Getting the cumulative sum of data
+- Getting the mean, variance and standard deviation of a set of data
 - Sorting data in ascending order, or reversing the order
 
 In this folder, test.c was made to test the module.<br>
