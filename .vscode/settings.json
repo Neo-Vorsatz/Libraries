@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "datahandling.h": "c",
-        "complexnumbers.h": "c",
-        "type_traits": "c"
-    }
-}
