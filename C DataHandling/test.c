@@ -1,6 +1,6 @@
 // Programme to test the data handling library; DataHandling
 // by Neo Vorsatz
-// Last updated: 27 November 2025
+// Last updated: 2 December 2025
 
 #include "DataHandling.c"
 #include <stdio.h>
@@ -32,18 +32,6 @@ int main() {
   printData(temp, length);
   printf("\n");
 
-  printf("=== Statistics ===\n");
-
-  //Testing mean/average/expected value
-  printf("Mean/average/expected value: %.3f, %.3f, %.3f | expected: 5\n",
-    dhMean(testData, length), dhAvg(testData, length), dhExpectedValue(testData, length));
-
-  //Testing variance
-  printf("Variance: %.3f | expected: 17.334\n", dhVar(testData, length));
-
-  //Testing standard deviation
-  printf("Standard deviation: %.3f | expected: 4.163\n", dhStdDev(testData, length)); 
-
   printf("=== Sorting ===\n");
 
   //Testing copying
@@ -70,4 +58,25 @@ int main() {
   printData(temp, length);
   printf("\n");
 
+  printf("=== Statistics ===\n");
+
+  //Testing minimum
+  printf("Minimum: %.3f | expected: 0\n", dhMin(testData, length));
+
+  //Testing maximum
+  printf("Maximum: %.3f | expected: 13.4\n", dhMax(testData, length));
+
+  //Testing mean/average/expected value
+  printf("Mean/average/expected value: %.3f, %.3f, %.3f | expected: 5\n",
+    dhMean(testData, length), dhAvg(testData, length), dhExpectedValue(testData, length));
+
+  //Testing variance
+  printf("Variance: %.3f | expected: 17.334\n", dhVar(testData, length));
+
+  //Testing standard deviation
+  printf("Standard deviation: %.3f | expected: 4.163\n", dhStdDev(testData, length)); 
+
+  //Testing quartiles
+  printf("Quartiles: %.3f, %.3f, %.3f | expected: 1, 5.2, 7.3\n",
+    dhLowerQuartile(testData, length), dhMedian(testData, length), dhUpperQuartile(testData, length));
 }

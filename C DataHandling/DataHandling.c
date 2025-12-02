@@ -1,7 +1,7 @@
 // Data Handling Library, for processing data
 // Implementation file
 // by Neo Vorsatz
-// Last updated: 27 November 2025
+// Last updated: 2 December 2025
 
 #include <math.h>
 #include "DataHandling.h"
@@ -32,52 +32,6 @@ void dhCumSum(double write[], double data[], int length) {
     //Write the cumulative sum to the corresponding index
     write[i] = sum;
   }
-}
-
-/*================================*/
-/* STATISTICS ================================*/
-
-//Returns the mean/average/expected value of an array of data values
-double dhMean(double data[], int length) {
-  //Get the sum
-  double sum = dhSum(data, length);
-  //Return the average
-  return sum/length;
-}
-
-//Returns the mean/average/expected value of an array of data values
-double dhAvg(double data[], int length) {
-  //Call the dhMean function
-  return dhMean(data, length);
-}
-
-//Returns the mean/average/expected value of an array of data values
-double dhExpectedValue(double data[], int length) {
-  //Call the dhMean function
-  return dhMean(data, length);
-}
-
-//Returns the varience of an array of data values, assuming the data represents the population
-double dhVar(double data[], int length) {
-  //Initialise an array of square-differences
-  double sqrDiff[length];
-  //Get the mean/average/expected value
-  double mean = dhMean(data, length);
-  //For each data point
-  for (int i=0; i<length; i++) {
-    //Get the difference
-    double diff = data[i]-mean;
-    //Save the squared difference
-    sqrDiff[i] = diff*diff;
-  }
-  //Return the mean/average/expected value of the squared difference
-  return dhMean(sqrDiff, length);
-}
-
-//Returns the standard deviance of an array of data values, assuming the data represents the population
-double dhStdDev(double data[], int length) {
-  //The standard deviance is the square-root of the variance
-  return sqrt(dhVar(data, length));
 }
 
 /*================================*/
@@ -203,6 +157,172 @@ void dhReverse(double write[], double data[], int length) {
     //Copy the element from the temporary array to the output
     write[i] = temp[i];
   }
+}
+
+/*================================*/
+/* STATISTICS ================================*/
+
+//Returns the smallest value in an array of data values
+double dhMin(double data[], int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the minimum
+    return 0;
+  }
+
+  //Assume the minimum is the first value
+  double min = data[0];
+  //For each data point other than the first
+  for (int i=1; i<length; i++) {
+    //If this value is less than the minimum
+    if (data[i]<min) {
+      //Update the minimum
+      min = data[i];
+    }
+  }
+  return min;
+}
+
+//Returns the largest value in an array of data values
+double dhMax(double data[], int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the maximum
+    return 0;
+  }
+
+  //Assume the maximum is the first value
+  double max = data[0];
+  //For each data point other than the first
+  for (int i=1; i<length; i++) {
+    //If this value is more than the maximum
+    if (data[i]>max) {
+      //Update the maximum
+      max = data[i];
+    }
+  }
+  return max;
+}
+
+//Returns the mean/average/expected value of an array of data values
+double dhMean(double data[], int length) {
+  //Get the sum
+  double sum = dhSum(data, length);
+  //Return the average
+  return sum/length;
+}
+
+//Returns the mean/average/expected value of an array of data values
+double dhAvg(double data[], int length) {
+  //Call the dhMean function
+  return dhMean(data, length);
+}
+
+//Returns the mean/average/expected value of an array of data values
+double dhExpectedValue(double data[], int length) {
+  //Call the dhMean function
+  return dhMean(data, length);
+}
+
+//Returns the varience of an array of data values, assuming the data represents the population
+double dhVar(double data[], int length) {
+  //Initialise an array of square-differences
+  double sqrDiff[length];
+  //Get the mean/average/expected value
+  double mean = dhMean(data, length);
+  //For each data point
+  for (int i=0; i<length; i++) {
+    //Get the difference
+    double diff = data[i]-mean;
+    //Save the squared difference
+    sqrDiff[i] = diff*diff;
+  }
+  //Return the mean/average/expected value of the squared difference
+  return dhMean(sqrDiff, length);
+}
+
+//Returns the standard deviance of an array of data values, assuming the data represents the population
+double dhStdDev(double data[], int length) {
+  //The standard deviance is the square-root of the variance
+  return sqrt(dhVar(data, length));
+}
+
+//Returns the median of an array of data values
+double dhMedian(double data[], int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the median
+    return 0;
+  }
+
+  //Find the middle index
+  int middle = length/2;
+  //Declare an array for the sorted data
+  double sortedData[length];
+  //Sort the data
+  dhMergeSort(sortedData, data, length);
+  //If there are an even number of data values
+  if (length%2==0) {
+    //Calculate the median
+    double median = (sortedData[middle-1]+sortedData[middle])/2;
+    //Return the median
+    return median;
+  }
+  //Return the value at the middle index
+  return sortedData[middle];
+}
+
+//Returns the lower quartile of an array of data values
+double dhLowerQuartile(double data[], int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the median
+    return 0;
+  }
+  //If there's only 1 element
+  if (length<2) {
+    //Return the only element
+    return data[0];
+  }
+
+  //Find the middle index
+  int middle = length/2;
+  //Declare an array for the sorted data
+  double sortedData[length];
+  //Sort the data
+  dhMergeSort(sortedData, data, length);
+  //Return the median of the lower half of data
+  return dhMedian(sortedData, middle);
+}
+
+//Returns the upper quartile of an array of data values
+double dhUpperQuartile(double data[], int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the median
+    return 0;
+  }
+  //If there's only 1 element
+  if (length<2) {
+    //Return the only element
+    return data[0];
+  }
+
+  //Find the middle index
+  int middle = length/2;
+  //Declare an array for the sorted data
+  double sortedData[length];
+  //Sort the data
+  dhMergeSort(sortedData, data, length);
+  //Find the starting index of the upper half of data
+  double* start = sortedData+middle;
+  //If there are an odd number of data values
+  if (length%2!=0) {
+    //Skip over the middle value (median)
+    start++;
+  }
+  //Return the median of the upper half of data
+  return dhMedian(start, middle);
 }
 
 /*================================*/

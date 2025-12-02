@@ -21,7 +21,32 @@ Returns the sum of an array of data values.
 Gets the cumulative sum of an array of data values.<br>
 Takes a pointer to where the cumulative sum will be written, a pointer to the array of data values, and the number of data values.
 
+### Sorting
+`void dhCopy(double write[], double data[], int length);`<br>
+Copies an array of data into another array.<br>
+Takes a pointer to where the copy will be written, a pointer to the array of data values, and the number of data values.
+
+`void dhQuickSort(double write[], double data[], int length);`<br>
+Sorts an array of data in ascending order using the Quick Sort algorithm.<br>
+Takes a pointer to where the sorted data will be written, a pointer to the array of data values, and the number of data values.
+
+`void dhMergeSort(double write[], double data[], int length);`<br>
+Sorts an array of data in ascending order using the Merge Sort algorithm.<br>
+Takes a pointer to where the sorted data will be written, a pointer to the array of data values, and the number of data values.
+
+`void dhReverse(double write[], double data[], int length);`<br>
+Reverses an array of data.<br>
+Takes a pointer to where the reversed array will be written, a pointer to the array of data values, and the number of data values.
+
 ### Statistics
+`double dhMin(double data[], int length);`<br>
+Takes a pointer to the array of data values, and the number of data values.<br>
+Returns the smallest value in an array of data values.
+
+`double dhMax(double data[], int length);`<br>
+Takes a pointer to the array of data values, and the number of data values.<br>
+Returns the largest value in an array of data values.
+
 `double dhMean(double data[], int length);`<br>
 Takes a pointer to the array of data values, and the number of data values.<br>
 Returns the mean/average/expected value of an array of data values.
@@ -44,19 +69,14 @@ Returns the varience of an array of data values.
 Takes a pointer to the array of data values, and the number of data values.<br>
 Returns the standard deviance of an array of data values.
 
-### Sorting
-`void dhCopy(double write[], double data[], int length);`<br>
-Copies an array of data into another array.<br>
-Takes a pointer to where the copy will be written, a pointer to the array of data values, and the number of data values.
+`double dhMedian(double data[], int length);`<br>
+Takes a pointer to the array of data values, and the number of data values.<br>
+Returns the median of an array of data values.
 
-`void dhQuickSort(double write[], double data[], int length);`<br>
-Sorts an array of data in ascending order using the Quick Sort algorithm.<br>
-Takes a pointer to where the sorted data will be written, a pointer to the array of data values, and the number of data values.
+`double dhLowerQuartile(double data[], int length);`<br>
+Takes a pointer to the array of data values, and the number of data values.<br>
+Returns the lower quartile of an array of data values.
 
-`void dhMergeSort(double write[], double data[], int length);`<br>
-Sorts an array of data in ascending order using the Merge Sort algorithm.<br>
-Takes a pointer to where the sorted data will be written, a pointer to the array of data values, and the number of data values.
-
-`void dhReverse(double write[], double data[], int length);`<br>
-Reverses an array of data.<br>
-Takes a pointer to where the reversed array will be written, a pointer to the array of data values, and the number of data values.
+`double dhUpperQuartile(double data[], int length);`<br>
+Takes a pointer to the array of data values, and the number of data values.<br>
+Returns the upper quartile of an array of data values.
