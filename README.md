@@ -9,12 +9,12 @@ With it, you can create, edit, and do computations with complex numbers, includi
 - Getting the conjugate of a complex number
 - Sine and cosine of an angle in radians
 
-## DataHandling [Warning: In Production]
+## DataHandling
 This module is for interpretting and processing data in C.<br>
 Some functionality this module offers is:
-- Getting the mean, variance and standard deviation of a set of data
 - Getting the cumulative sum of data
 - Sorting data in ascending order, or reversing the order
+- Getting the mean, variance and standard deviation of a set of data
 
 ## DigitalSignalProcessing [Warning: In Production]
 This module is for interpretting and processing digital signals in C.<br>

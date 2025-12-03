@@ -2,8 +2,8 @@
 ## Overview
 Some functionality this module offers is:
 - Getting the cumulative sum of data
-- Getting the mean, variance and standard deviation of a set of data
 - Sorting data in ascending order, or reversing the order
+- Getting the mean, variance and standard deviation of a set of data
 
 In this folder, test.c was made to test the module.<br>
 It can also be used as a reference to see how the module was intended to be used.
