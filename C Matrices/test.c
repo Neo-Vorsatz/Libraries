@@ -1,13 +1,13 @@
 // Programme to test the matrices library; Matrix
 // by Neo Vorsatz
-// Last updated: 9 July 2025
+// Last updated: 17 December 2025
 
 /* Test was done with a maximum matrix size of 4 by 4, and the elements as type "double" */
 
 #include "matrix.c"
 #include <stdio.h>
 
-void printMatrix(matrix *read) {
+void printMatrix(matrix* read) {
   for (int r=0; r<mxGetNumRows(read); r++) {
     for (int c=0; c<mxGetNumColumns(read); c++) {
       printf("%f ", mxReadElement(read, r, c));
@@ -94,7 +94,6 @@ int main() {
 
   //Solving for the vectors using inverse
   matrix solution2;
-  mxIdentity(&solution2, 2); //
   mxSolveInverse(&solution2, &m1, &result);
   printf("Solving for the vectors using the inverse:\n");
   printMatrix(&solution2);

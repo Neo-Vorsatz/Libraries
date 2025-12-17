@@ -1,14 +1,14 @@
 // Matrices Library, for matrix operations
 // Implementation file
 // by Neo Vorsatz
-// Last updated: 27 November 2025
+// Last updated: 17 December 2025
 
 #include "matrix.h"
 
 /* WRITING ================================*/
 
 //Sets the given matrix's values to the parameters
-mxBoolean_t mxSet(matrix *write, int rows, int columns, mxElement_t elements[SIZE][SIZE]) {
+mxBoolean_t mxSet(matrix* write, int rows, int columns, mxElement_t elements[SIZE][SIZE]) {
   //If the given rows or columns are too big
   if ((rows>SIZE)||(columns>SIZE)) {return 0;}
 
@@ -29,7 +29,7 @@ mxBoolean_t mxSet(matrix *write, int rows, int columns, mxElement_t elements[SIZ
 }
 
 //Copies the second matrix's data onto the first
-void mxCopy(matrix *write, matrix *read) {
+void mxCopy(matrix* write, matrix* read) {
   //Copy the number of rows and columns
   write->rows = read->rows;
   write->columns = read->columns;
@@ -44,7 +44,7 @@ void mxCopy(matrix *write, matrix *read) {
 }
 
 //Sets the number of rows and columns of the given matrix
-mxBoolean_t mxSetSize(matrix *write, int rows, int columns) {
+mxBoolean_t mxSetSize(matrix* write, int rows, int columns) {
   //If the given rows or columns are too big
   if ((rows>SIZE)||(columns>SIZE)) {return 0;}
 
@@ -57,7 +57,7 @@ mxBoolean_t mxSetSize(matrix *write, int rows, int columns) {
 }
 
 //Writes an entry into the given row and column of the given matrix
-mxBoolean_t mxWriteElement(matrix *write, int row, int column, mxElement_t entry) {
+mxBoolean_t mxWriteElement(matrix* write, int row, int column, mxElement_t entry) {
   //If the index is out of bounds
   if ((row+1>SIZE)||(column+1>SIZE)) {return 0;}
 
@@ -79,7 +79,7 @@ mxBoolean_t mxWriteElement(matrix *write, int row, int column, mxElement_t entry
 }
 
 //Rewrites the content of a row
-mxBoolean_t mxWriteRow_len(matrix *write, int index, mxElement_t *row, int arrLength) {
+mxBoolean_t mxWriteRow_len(matrix* write, int index, mxElement_t *row, int arrLength) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -105,12 +105,12 @@ mxBoolean_t mxWriteRow_len(matrix *write, int index, mxElement_t *row, int arrLe
 }
 
 //Rewrites the content of a row (assumes the array length is perfectly sized)
-mxBoolean_t mxWriteRow(matrix *write, int index, mxElement_t *row) {
+mxBoolean_t mxWriteRow(matrix* write, int index, mxElement_t *row) {
   return mxWriteRow_len(write, index, row, write->columns);
 }
 
 //Rewrites the content of a column
-mxBoolean_t mxWriteColumn_len(matrix *write, int index, mxElement_t *column, int arrLength) {
+mxBoolean_t mxWriteColumn_len(matrix* write, int index, mxElement_t *column, int arrLength) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -136,12 +136,12 @@ mxBoolean_t mxWriteColumn_len(matrix *write, int index, mxElement_t *column, int
 }
 
 //Rewrites the content of a column (assumes the array length is perfectly sized)
-mxBoolean_t mxWriteColumn(matrix *write, int index, mxElement_t *column) {
+mxBoolean_t mxWriteColumn(matrix* write, int index, mxElement_t *column) {
   return mxWriteColumn_len(write, index, column, write->rows);
 }
 
 //Inserts a row of entries into the given index
-mxBoolean_t mxInsertRow_len(matrix *write, int index, mxElement_t *row, int arrLength) {
+mxBoolean_t mxInsertRow_len(matrix* write, int index, mxElement_t *row, int arrLength) {
   //If the matrix is too large
   if (write->rows==SIZE) {return 0;}
   //If the index is out of bounds
@@ -177,22 +177,22 @@ mxBoolean_t mxInsertRow_len(matrix *write, int index, mxElement_t *row, int arrL
 }
 
 //Inserts a row of entries into the given index (assumes the array length is perfectly sized)
-mxBoolean_t mxInsertRow(matrix *write, int index, mxElement_t *row) {
+mxBoolean_t mxInsertRow(matrix* write, int index, mxElement_t *row) {
   return mxInsertRow_len(write, index, row, write->columns);
 }
 
 //Appends a row of entries to the end of the matrix
-mxBoolean_t mxAppendRow_len(matrix *write, mxElement_t *row, int arrLength) {
+mxBoolean_t mxAppendRow_len(matrix* write, mxElement_t *row, int arrLength) {
   return mxInsertRow_len(write, write->rows, row, arrLength);
 }
 
 //Appends a row of entries to the end of the matrix (assumes the array length is perfectly sized)
-mxBoolean_t mxAppendRow(matrix *write, mxElement_t *row) {
+mxBoolean_t mxAppendRow(matrix* write, mxElement_t *row) {
   return mxInsertRow_len(write, write->rows, row, write->columns);
 }
 
 //Inserts a column of entries into the given index
-mxBoolean_t mxInsertColumn_len(matrix *write, int index, mxElement_t *column, int arrLength) {
+mxBoolean_t mxInsertColumn_len(matrix* write, int index, mxElement_t *column, int arrLength) {
   //If the matrix is too large
   if (write->columns==SIZE) {return 0;}
   //If the index is out of bounds
@@ -228,22 +228,22 @@ mxBoolean_t mxInsertColumn_len(matrix *write, int index, mxElement_t *column, in
 }
 
 //Inserts a column of entries into the given index (assumes the array length is perfectly sized)
-mxBoolean_t mxInsertColumn(matrix *write, int index, mxElement_t *column) {
+mxBoolean_t mxInsertColumn(matrix* write, int index, mxElement_t *column) {
   return mxInsertColumn_len(write, index, column, write->rows);
 }
 
 //Appends a column of entries to the end of the matrix
-mxBoolean_t mxAppendColumn_len(matrix *write, mxElement_t *column, int arrLength) {
+mxBoolean_t mxAppendColumn_len(matrix* write, mxElement_t *column, int arrLength) {
   return mxInsertColumn_len(write, write->columns, column, arrLength);
 }
 
 //Appends a column of entries to the end of the matrix (assumes the array length is perfectly sized)
-mxBoolean_t mxAppendColumn(matrix *write, mxElement_t *column) {
+mxBoolean_t mxAppendColumn(matrix* write, mxElement_t *column) {
   return mxInsertColumn_len(write, write->columns, column, write->rows);
 }
 
 //Deletes a row from the matrix
-mxBoolean_t mxDeleteRow(matrix *write, int index) {
+mxBoolean_t mxDeleteRow(matrix* write, int index) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -266,7 +266,7 @@ mxBoolean_t mxDeleteRow(matrix *write, int index) {
 }
 
 //Deletes a column from the matrix
-mxBoolean_t mxDeleteColumn(matrix *write, int index) {
+mxBoolean_t mxDeleteColumn(matrix* write, int index) {
   //If the index is out of bounds
   if (index+1>SIZE) {return 0;}
 
@@ -292,17 +292,17 @@ mxBoolean_t mxDeleteColumn(matrix *write, int index) {
 /* READING ================================*/
 
 //Returns the number of rows
-int mxGetNumRows(matrix *read) {
+int mxGetNumRows(matrix* read) {
   return read->rows;
 }
 
 //Returns the number of columns
-int mxGetNumColumns(matrix *read) {
+int mxGetNumColumns(matrix* read) {
   return read->columns;
 }
 
 //Returns the element in the given row and column
-mxElement_t mxReadElement(matrix *read, int row, int column) {
+mxElement_t mxReadElement(matrix* read, int row, int column) {
   //If the index is out of bounds
   if ((read->rows<row)||(read->columns<column)) {return 0;}
   //Returning the element
@@ -313,7 +313,7 @@ mxElement_t mxReadElement(matrix *read, int row, int column) {
 /* OPERATIONS ================================*/
 
 //Checks if two matrices are equal
-mxBoolean_t mxEqual(matrix *read1, matrix *read2) {
+mxBoolean_t mxEqual(matrix* read1, matrix* read2) {
   //If the sizes are different
   if (!((read1->rows==read2->rows)&&(read1->columns==read2->columns))) {
     //Then the matrices aren't equal
@@ -335,7 +335,7 @@ mxBoolean_t mxEqual(matrix *read1, matrix *read2) {
 }
 
 //Empties a matrix
-void mxZero(matrix *write) {
+void mxZero(matrix* write) {
   //Set the sizze to 0
   write->rows = 0;
   write->columns = 0;
@@ -350,7 +350,7 @@ void mxZero(matrix *write) {
 }
 
 //Turns a matrix into the identity matrix with a particular size
-mxBoolean_t mxIdentity(matrix *write, int size) {
+mxBoolean_t mxIdentity(matrix* write, int size) {
   //If the size is too large
   if (size>SIZE) {return 0;}
 
@@ -377,7 +377,7 @@ mxBoolean_t mxIdentity(matrix *write, int size) {
 }
 
 //Adds the second matrix to the first
-mxBoolean_t mxAdd(matrix *write, matrix *read1, matrix *read2) {
+mxBoolean_t mxAdd(matrix* write, matrix* read1, matrix* read2) {
   //If the matrices can't be added
   if (!( (read1->rows==read2->rows)&&(read1->columns==read2->columns) )) {return 0;}
 
@@ -404,7 +404,7 @@ mxBoolean_t mxAdd(matrix *write, matrix *read1, matrix *read2) {
 }
 
 //Scales/Multiplies the given matrix by a factor
-void mxScale(matrix *write, matrix *read, double factor) {
+void mxScale(matrix* write, matrix* read, double factor) {
   //Setting the size
   write->rows = read->rows;
   write->columns = read->columns;
@@ -418,7 +418,7 @@ void mxScale(matrix *write, matrix *read, double factor) {
 }
 
 //Multiplies the matrices
-mxBoolean_t mxMultiply(matrix *write, matrix *read1, matrix *read2) {
+mxBoolean_t mxMultiply(matrix* write, matrix* read1, matrix* read2) {
   //If the matrices can't be multiplied
   if (read1->columns!=read2->rows) {return 0;}
 
@@ -452,7 +452,7 @@ mxBoolean_t mxMultiply(matrix *write, matrix *read1, matrix *read2) {
 }
 
 //Returns the determinant of the given matrix
-mxElement_t mxDeterminant(matrix *read) {
+mxElement_t mxDeterminant(matrix* read) {
   //If it's not a square matrix
   if (read->rows!=read->columns) {return 0;}
   //If there is only 1 element, return that element
@@ -485,7 +485,7 @@ mxElement_t mxDeterminant(matrix *read) {
 }
 
 //Transposes the given matrix
-void mxTranspose(matrix *write, matrix *read) {
+void mxTranspose(matrix* write, matrix* read) {
   //Temporarily storing the Read matrix
   matrix m;
   mxCopy(&m, read);
@@ -504,7 +504,7 @@ void mxTranspose(matrix *write, matrix *read) {
 }
 
 //Gets the adjoint of the given matrix
-mxBoolean_t mxAdjoint(matrix *write, matrix *read) {
+mxBoolean_t mxAdjoint(matrix* write, matrix* read) {
   //If it's not a square matrix
   if (read->rows!=read->columns) {return 0;}
 
@@ -539,7 +539,7 @@ mxBoolean_t mxAdjoint(matrix *write, matrix *read) {
 }
 
 //Inverts the given matrix
-mxBoolean_t mxInverse(matrix *write, matrix *read) {
+mxBoolean_t mxInverse(matrix* write, matrix* read) {
   //If it's not a square matrix
   if (read->rows!=read->columns) {return 0;}
   //Getting the determinant
@@ -557,7 +557,7 @@ mxBoolean_t mxInverse(matrix *write, matrix *read) {
 }
 
 //Solves for a particular element within a particular vector using Cramer's rule
-mxElement_t mxSolveCramer(matrix *transform, matrix *result, int vector, int index) {
+mxElement_t mxSolveCramer(matrix* transform, matrix* result, int vector, int index) {
   //If it's not a square matrix
   if (transform->rows!=transform->columns) {return 0;}
   //If the vector number is out of bounds
@@ -589,7 +589,7 @@ mxElement_t mxSolveCramer(matrix *transform, matrix *result, int vector, int ind
 }
 
 //Solves for all vectors using the inverse of the transformation
-mxBoolean_t mxSolveInverse(matrix *write, matrix *transform, matrix *result) {
+mxBoolean_t mxSolveInverse(matrix* write, matrix* transform, matrix* result) {
   //Save Write as the inverse of the Transform
   if (!mxInverse(write, transform)) {
     //If this process fails
@@ -603,7 +603,7 @@ mxBoolean_t mxSolveInverse(matrix *write, matrix *transform, matrix *result) {
 }
 
 //Turns a matrix into Reduced Row Echelon Form, and edits 1 additional matrix as collateral
-void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix *readReduce, matrix *readCollateral) {
+void mxReducedEchelon_coll(matrix* writeReduce, matrix* writeCollateral, matrix* readReduce, matrix* readCollateral) {
   //Copy the matrices
   mxCopy(writeReduce, readReduce);
   mxCopy(writeCollateral, readCollateral);
@@ -669,7 +669,7 @@ void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix 
 }
 
 //Turns a matrix into Reduced Row Echelon Form
-void mxReducedEchelon(matrix *write, matrix *read) {
+void mxReducedEchelon(matrix* write, matrix* read) {
   //Creating a zero matrix
   matrix zero;
   mxZero(&zero);
@@ -679,7 +679,7 @@ void mxReducedEchelon(matrix *write, matrix *read) {
 }
 
 //Solves for all vectors where possible, using Guass reduction
-mxBoolean_t mxSolveGauss(matrix *write, matrix *transform, matrix *result) {
+mxBoolean_t mxSolveGauss(matrix* write, matrix* transform, matrix* result) {
   //If the result is impossible from the transform
   if (transform->rows!=result->rows) {return 0;}
 

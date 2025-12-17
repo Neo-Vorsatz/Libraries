@@ -25,176 +25,176 @@ then myMatrix will be a matrix struct.
 
 ## Functions
 ### Writing
-`mxBoolean_t mxSet(matrix *write, int rows, int columns, mxElement_t elements[SIZE][SIZE]);`<br>
+`mxBoolean_t mxSet(matrix* write, int rows, int columns, mxElement_t elements[SIZE][SIZE]);`<br>
 Sets the given matrix's values to the parameters.<br>
 Takes a pointer to the matrix, the number of rows, the number of columns, and a 2D array of the elements.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`void mxCopy(matrix *write, matrix *read);`<br>
+`void mxCopy(matrix* write, matrix* read);`<br>
 Copies the second matrix's data onto the first.<br>
 Takes a pointer to the matrix that is being copied to, and a pointer to the matrix that is being copied from.
 
-`mxBoolean_t mxSetSize(matrix *write, int rows, int columns);`<br>
+`mxBoolean_t mxSetSize(matrix* write, int rows, int columns);`<br>
 Sets the number of rows and columns of the given matrix.<br>
 Takes a pointer to the matrix, the number of rows, and the number of columns.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxWriteElement(matrix *write, int row, int column, mxElement_t entry);`<br>
+`mxBoolean_t mxWriteElement(matrix* write, int row, int column, mxElement_t entry);`<br>
 Writes an entry into the given row and column of the given matrix.<br>
 Takes a pointer to the matrix, the index of the row, the index of the column, and the value of the entry.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxWriteRow_len(matrix *write, int index, mxElement_t *row, int arrLength);`<br>
+`mxBoolean_t mxWriteRow_len(matrix* write, int index, mxElement_t *row, int arrLength);`<br>
 Rewrites the content of a row.<br>
 Takes a pointer to the matix, the index of the row, an array of entries, and the length of that array.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxWriteRow(matrix *write, int index, mxElement_t *row);`<br>
+`mxBoolean_t mxWriteRow(matrix* write, int index, mxElement_t *row);`<br>
 Rewrites the content of a row (assumes the array length is perfectly sized).<br>
 Takes a pointer to the matrix, the index of the row, and an array of entries.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxWriteColumn_len(matrix *write, int index, mxElement_t *column, int arrLength);`<br>
+`mxBoolean_t mxWriteColumn_len(matrix* write, int index, mxElement_t *column, int arrLength);`<br>
 Rewrites the content of a column.<br>
 Takes a pointer to the matrix, the index of the column, and an array of entries, and the length of that array.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxWriteColumn(matrix *write, int index, mxElement_t *column);`<br>
+`mxBoolean_t mxWriteColumn(matrix* write, int index, mxElement_t *column);`<br>
 Rewrites the content of a column (assumes the array length is perfectly sized).<br>
 Takes a pointer to the matrix, the index of the row, and an array of entries.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxInsertRow_len(matrix *write, int index, mxElement_t *row, int arrLength);`<br>
+`mxBoolean_t mxInsertRow_len(matrix* write, int index, mxElement_t *row, int arrLength);`<br>
 Inserts a row of entries into the given index.<br>
 Takes a pointer to the matix, the index of the row, an array of entries, and the length of that array.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxInsertRow(matrix *write, int index, mxElement_t *row);`<br>
+`mxBoolean_t mxInsertRow(matrix* write, int index, mxElement_t *row);`<br>
 Inserts a row of entries into the given index (assumes the array length is perfectly sized).<br>
 Takes a pointer to the matrix, the index of the row, and an array of entries.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxAppendRow_len(matrix *write, mxElement_t *row, int arrLength);`<br>
+`mxBoolean_t mxAppendRow_len(matrix* write, mxElement_t *row, int arrLength);`<br>
 Appends a row of entries to the end of the matrix.<br>
 Takes a pointer to the matix, an array of entries, and the length of that array.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxAppendRow(matrix *write, mxElement_t *row);`<br>
+`mxBoolean_t mxAppendRow(matrix* write, mxElement_t *row);`<br>
 Appends a row of entries to the end of the matrix (assumes the array length is perfectly sized).<br>
 Takes a pointer to the matrix, and an array of entries.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxInsertColumn_len(matrix *write, int index, mxElement_t *column, int arrLength);`<br>
+`mxBoolean_t mxInsertColumn_len(matrix* write, int index, mxElement_t *column, int arrLength);`<br>
 Inserts a column of entries into the given index.<br>
 Takes a pointer to the matix, the index of the column, an array of entries, and the length of that array.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxInsertColumn(matrix *write, int index, mxElement_t *column);`<br>
+`mxBoolean_t mxInsertColumn(matrix* write, int index, mxElement_t *column);`<br>
 Inserts a column of entries into the given index (assumes the array length is perfectly sized).<br>
 Takes a pointer to the matrix, the index of the column, and an array of entries.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxAppendColumn_len(matrix *write, mxElement_t *column, int arrLength);`<br>
+`mxBoolean_t mxAppendColumn_len(matrix* write, mxElement_t *column, int arrLength);`<br>
 Appends a column of entries to the end of the matrix.<br>
 Takes a pointer to the matix, an array of entries, and the length of that array.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxAppendColumn(matrix *write, mxElement_t *column);`<br>
+`mxBoolean_t mxAppendColumn(matrix* write, mxElement_t *column);`<br>
 Appends a column of entries to the end of the matrix (assumes the array length is perfectly sized).<br>
 Takes a pointer to the matrix, and an array of entries.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxDeleteRow(matrix *write, int index);`<br>
+`mxBoolean_t mxDeleteRow(matrix* write, int index);`<br>
 Deletes a row from the matrix.<br>
 Takes a pointer to the matrix, and the index of the row.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxDeleteColumn(matrix *write, int index);`<br>
+`mxBoolean_t mxDeleteColumn(matrix* write, int index);`<br>
 Deletes a column from the matrix.<br>
 Takes a pointer to the matrix, and the index of the column.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
 ### Reading
 
-`int mxGetNumRows(matrix *read);`<br>
+`int mxGetNumRows(matrix* read);`<br>
 Takes a pointer to the matrix.<br>
 Returns the number of rows.
 
-`int mxGetNumColumns(matrix *read);`<br>
+`int mxGetNumColumns(matrix* read);`<br>
 Takes a pointer to the matrix.<br>
 Returns the number of columns.
 
-`mxElement_t mxReadElement(matrix *read, int row, int column);`<br>
+`mxElement_t mxReadElement(matrix* read, int row, int column);`<br>
 Takes a pointer to the matrix, the index of the row, and the index of the column.<br>
 Returns the element in the given row and column.
 
 ### Operations
 
-`mxBoolean_t mxEqual(matrix *read1, matrix *read2);`<br>
+`mxBoolean_t mxEqual(matrix* read1, matrix* read2);`<br>
 Checks if two matrices are equal.<br>
 Takes a pointer to the first matrix, and a pointer to the second matrix.<br>
 Returns 1 (true) if the two matrices are equal, otherwise returns 0 (false).
 
-`void mxZero(matrix *write);`<br>
+`void mxZero(matrix* write);`<br>
 Empties a matrix.<br>
 Takes a pointer to the matrix.
 
-`mxBoolean_t mxIdentity(matrix *write, int size);`<br>
+`mxBoolean_t mxIdentity(matrix* write, int size);`<br>
 Turns a matrix into the identity matrix with a particular size.<br.>
 Takes a pointer to the matrix, and the size desired.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxAdd(matrix *write, matrix *read1, matrix *read2);`<br>
+`mxBoolean_t mxAdd(matrix* write, matrix* read1, matrix* read2);`<br>
 Adds the second matrix to the first.<br>
 Takes a pointer to where the result will be written, a pointer to the first matrix, and a pointer to the second matrix.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`void mxScale(matrix *write, matrix *read, double factor);`<br>
+`void mxScale(matrix* write, matrix* read, double factor);`<br>
 Scales/Multiplies the given matrix by a factor.<br>
 Takes a pointer to where the result will be written, a pointer to the matrix, the value of the factor/scalar.<br>
 
-`mxBoolean_t mxMultiply(matrix *write, matrix *read1, matrix *read2);`<br>
+`mxBoolean_t mxMultiply(matrix* write, matrix* read1, matrix* read2);`<br>
 Multiplies two matrices.<br>
 Takes a pointer to where the result will be written, a pointer to the first matrix (transformation), and a pointer to the second matrix (vector).<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxElement_t mxDeterminant(matrix *read);`<br>
+`mxElement_t mxDeterminant(matrix* read);`<br>
 Takes a pointer to the matrix.<br>
 Returns the determinant of the given matrix.
 
-`void mxTranspose(matrix *write, matrix *read);`<br>
+`void mxTranspose(matrix* write, matrix* read);`<br>
 Transposes the given matrix.<br>
 Takes a pointer to where the result will be written, and a pointer to the matrix.
 
-`mxBoolean_t mxAdjoint(matrix *write, matrix *read);`<br>
+`mxBoolean_t mxAdjoint(matrix* write, matrix* read);`<br>
 Gets the adjoint of the given matrix.<br>
 Takes a pointer to where the result will be written, and a pointer to the matrix.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxBoolean_t mxInverse(matrix *write, matrix *read);`<br>
+`mxBoolean_t mxInverse(matrix* write, matrix* read);`<br>
 Inverts the given matrix.<br>
 Takes a pointer to where the result will be written, and a pointer to the matrix.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`mxElement_t mxSolveCramer(matrix *transform, matrix *result, int vector, int index);`<br>
+`mxElement_t mxSolveCramer(matrix* transform, matrix* result, int vector, int index);`<br>
 Solves for a particular element within a particular vector using Cramer's rule.<br>
 Takes a pointer to the transformation matrix, a pointer to the resultant matrix, the index of the vector being solved for, and the index of the element of that vector.<br>
 Returns the value of the particular element in the particular vector, or returns 0 if there are no solutions, or returns 1 if there are infinite solutions.
 
-`mxBoolean_t mxSolveInverse(matrix *write, matrix *transform, matrix *result);`<br>
+`mxBoolean_t mxSolveInverse(matrix* write, matrix* transform, matrix* result);`<br>
 Solves for all vectors using the inverse of the transformation.<br>
 Takes a pointer to where the result will be written, a pointer to the transformation matrix, and a pointer to the resultant matrix.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
-`void mxReducedEchelon_coll(matrix *writeReduce, matrix *writeCollateral, matrix *readReduce, matrix *readCollateral);`<br>
+`void mxReducedEchelon_coll(matrix* writeReduce, matrix* writeCollateral, matrix* readReduce, matrix* readCollateral);`<br>
 Turns a matrix into Reduced Row Echelon Form, and edits 1 additional matrix as collateral.<br>
 Takes a pointer to where the result will be written, a pointer to where the collateral result will be written, a pointer to the matrix, and a pointer to the collateral matrix.
 
-`void mxReducedEchelon(matrix *write, matrix *read);`<br>
+`void mxReducedEchelon(matrix* write, matrix* read);`<br>
 Turns a matrix into Reduced Row Echelon Form.<br>
 Takes a pointer to where the result will be written, and a pointer to the matrix.
 
-`mxBoolean_t mxSolveGauss(matrix *write, matrix *transform, matrix *result);`<br>
+`mxBoolean_t mxSolveGauss(matrix* write, matrix* transform, matrix* result);`<br>
 Solves for all vectors where possible, using Guass reduction. All vectors that could not be solved for are written as zero-vectors.<br>
 Takes a pointer to where the result will be written, a pointer to the transformation matrix, and a pointer to the resultant matrix.<br>
 Returns 1 (true) if the process was successful, otherwise returns 0 (false).
