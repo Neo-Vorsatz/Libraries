@@ -1,13 +1,13 @@
 # Introduction
 This is a collection of libraries/modules I've programmed in C, targetted towards electrical or embedded systems engineers.
 # Libraries
-## ComplexNumbers [Warning: In Production]
+## ComplexNumbers [Warning: Untested]
 This module is for complex number operations in C.<br>
 With it, you can create, edit, and do computations with complex numbers, including but not limited to:
-- Complex number multiplication
 - Getting the magnitude of a complex number
+- Complex number multiplication
 - Getting the conjugate of a complex number
-- Sine and cosine of an angle in radians
+- Euler's formula
 
 ## DataHandling
 This module is for interpretting and processing data in C.<br>
