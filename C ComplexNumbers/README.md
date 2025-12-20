@@ -8,7 +8,8 @@ With it, you can create, edit, and do computations with complex numbers, includi
 - Getting the magnitude of a complex number
 - Complex number multiplication
 - Getting the conjugate of a complex number
-- Euler's formula<br>
+- Euler's formula
+
 Note: All angles are measured in radians.
 
 In this folder, test.c was made to test the module.<br>
