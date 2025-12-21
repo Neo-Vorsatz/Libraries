@@ -18,6 +18,10 @@ complex cnRect(double real, double imag) {
 
 //Returns a complex number in polar form
 complex cnPolar(double mag, double arg) {
+  if (mag<0) { //If the magnitude is negative
+    mag = -mag; //Correct the magnitude
+    arg += PI; //Rotate the phase
+  }
   complex complexNum = {mag, cnPrincipleArg(arg), 0};
   return complexNum;
 }
@@ -115,9 +119,18 @@ void cnSetImag(complex* complexNum, double imag){
 
 //Sets the magnitude of a complex number
 void cnSetMag(complex* complexNum, double mag){
+  //Converting to polar form
   cnBoolean_t rect_form = complexNum->rect_form; //Save the current form
   *complexNum = cnPolarForm(*complexNum); //Convert to polar form
-  complexNum->real_mod = mag;
+
+  //Assigning new magnitude
+  if (mag<0) { //If the magnitude is negative
+    complexNum->real_mod = -mag;
+  } else { //The magnitude is positive
+    complexNum->real_mod = mag;
+  }
+
+  //Converting back to rectangular form if necessary
   if (rect_form) {
     *complexNum = cnRectForm(*complexNum); //Convert back to polar form
   }
