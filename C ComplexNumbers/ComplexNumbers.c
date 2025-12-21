@@ -1,12 +1,12 @@
 // Complex Numbers Library, for complex number operations
 // Implementation file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 20 December 2025
+// Last updated: 21 December 2025
 
 #include <math.h>
 #include "complexnumbers.h"
 
-#define PI 3.14159265358979323846 //Same value in math.h, but defined locally
+static const double PI = 3.14159265358979323846; //Same value in math.h, but defined locally
 
 /* CREATING ================================*/
 
@@ -66,7 +66,7 @@ double cnImag(complex complexNum) {
 }
 
 //Returns the magnitude of a complex number
-double cnMod( complex complexNum){
+double cnMag( complex complexNum){
   //If the complex number is in rectangular form
   if (complexNum.rect_form) {
     //Use Pythagorean formula
@@ -168,7 +168,7 @@ complex cnRectForm(complex complexNum) {
 complex cnPolarForm(complex complexNum) {
   //If the complex number is in rectangular form
   if (complexNum.rect_form) {
-    return cnPolar(cnMod(complexNum), cnArg(complexNum));
+    return cnPolar(cnMag(complexNum), cnArg(complexNum));
   }
   //Return the original complex number
   return complexNum;
@@ -243,23 +243,60 @@ complex cnMultiply(complex complexNum1, complex complexNum2) {
 }
 
 //Returns the quotient of two complex numbers
-complex cnDivide(complex complexNum1, complex complexNum2) {
-  //Use the form of the first complex number
-  cnBoolean_t rect_form = complexNum1.rect_form;
-
+complex cnDivide(complex numerator, complex denominator) {
+  //Save the form of the first complex number
+  cnBoolean_t rect_form = numerator.rect_form;
   //Convert complex numbers to polar form
-  complexNum1 = cnPolarForm(complexNum1);
-  complexNum2 = cnPolarForm(complexNum2);
+  numerator = cnPolarForm(numerator);
+  denominator = cnPolarForm(denominator);
 
   //Divide magnitudes
-  double mag = complexNum1.real_mod/complexNum2.real_mod;
+  double mag = numerator.real_mod/denominator.real_mod;
   //Subtract arguments
-  double arg = cnPrincipleArg(complexNum1.imag_arg-complexNum2.imag_arg);
+  double arg = cnPrincipleArg(numerator.imag_arg-denominator.imag_arg);
   //Create the resulting complex number
   complex result = cnPolar(mag, arg);
   if (rect_form) {
     result = cnRectForm(result); //Convert the result to rectangular form
   }
+
+  //Return the result
+  return result;
+}
+
+//Returns the complex number raised to a real power
+complex cnPow(complex base, double power) {
+  //Save the current form
+  cnBoolean_t rect_form = base.rect_form;
+  //Convert to polar form
+  base = cnPolarForm(base);
+
+  //Calculate the magnitude
+  double mag = pow(base.real_mod, power);
+  //Calculate the argument
+  double arg = cnPrincipleArg(base.imag_arg*power);
+  //Create the resulting complex number
+  complex result = cnPolar(mag, arg);
+  if (rect_form) {
+    result = cnRectForm(result); //Convert the result to rectangular form
+  }
+
+  //Return the resulting complex number
+  return result;
+}
+
+//Returns the complex number raised to a complex power
+complex cnPowComplex(complex base, complex power) {
+  //Convert power to rectangular form
+  power = cnRectForm(power);
+
+  //Calculate the first factor (from the real power)
+  complex factor1 = cnPow(base, power.real_mod);
+  //Calculate the second factor (from the imaginary power)
+  complex power_e = cnMultiply(cnI(power.imag_arg), cnLog(base)); //Instead of raising b^p, you can raise e^(p*ln(b))
+  complex factor2 = cnExp(power_e);
+  //Multiply the two factors
+  complex result = cnMultiply(factor1, factor2); //`result` carries the form of `factor1`, which carries the form of `base`
 
   //Return the result
   return result;
@@ -286,9 +323,28 @@ complex cnExp(complex complexNum) {
   return cnPolar(mag, arg);
 }
 
+//Returns the natural logarithm of a complex number
+complex cnLog(complex complexNum) {
+  //Convert the complex number to polar form
+  complexNum = cnPolarForm(complexNum);
+  //Calculate the real component
+  double real = log(complexNum.real_mod);
+  //Calculate the imaginary component
+  double imag = complexNum.imag_arg;
+  //Return the resulting complex number
+  return cnRect(real, imag);
+}
+
 //Returns the principle argument of an angle
 double cnPrincipleArg(double angle) {
-  return fmod(angle-PI, 2*PI)+PI;
+  //Reduce range to [-PI, PI)
+  double arg = fmod(angle+PI, 2*PI)-PI;
+  //Convert range to (-PI, PI]
+  if (arg==-PI) {
+    arg = PI;
+  }
+  //Return the principle argument
+  return arg;
 }
 
 /*================================*/

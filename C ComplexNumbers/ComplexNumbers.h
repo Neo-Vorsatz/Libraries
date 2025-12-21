@@ -1,7 +1,7 @@
 // Complex Numbers Library, for complex number operations
 // Header file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 20 December 2025
+// Last updated: 21 December 2025
 
 #ifndef COMPLEXNUMBERS_H
 #define COMPLEXNUMBERS_H
@@ -80,7 +80,7 @@ double cnImag(complex complexNum);
  * 
  * @return The magnitude of a complex number
  */
-double cnMod(complex complexNum);
+double cnMag(complex complexNum);
 
 /**
  * @param complexNum A complex number
@@ -202,7 +202,23 @@ complex cnMultiply(complex complexNum1, complex complexNum2);
  * 
  * @return The quotient of two complex numbers
  */
-complex cnDivide(complex complexNum1, complex complexNum2);
+complex cnDivide(complex numerator, complex denominator);
+
+/**
+ * @param base A complex number
+ * @param power The power to raise the complex number to
+ * 
+ * @return The complex number raised to a real power
+ */
+complex cnPow(complex base, double power);
+
+/**
+ * @param base A complex number
+ * @param power The power to raise the complex number to
+ * 
+ * @return The complex number raised to a complex power
+ */
+complex cnPowComplex(complex base, complex power);
 
 /**
  * @param complexNum A complex number
@@ -217,6 +233,13 @@ complex cnConjugate(complex complexNum);
  * @return e raised to the power of a complex number (Euler's formula)
  */
 complex cnExp(complex complexNum);
+
+/**
+ * @param complexNum A complex number
+ * 
+ * @return The natural logarithm of a complex number
+ */
+complex cnLog(complex complexNum);
 
 /**
  * @param angle An angle

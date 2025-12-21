@@ -1,4 +1,4 @@
-# C ComplexNumbers [Warning: Untested]
+# C ComplexNumbers
 ## Credits
 This module was made with the help of [Ambesiwe Sonka](https://github.com/Ambesiwe).
 
@@ -8,7 +8,7 @@ With it, you can create, edit, and do computations with complex numbers, includi
 - Getting the magnitude of a complex number
 - Complex number multiplication
 - Getting the conjugate of a complex number
-- Euler's formula
+- Complex exponentiation
 
 Note: All angles are measured in radians.
 
@@ -55,7 +55,7 @@ Returns the real component of a complex number.
 Takes a complex number.<br>
 Returns the imaginary component of a complex number.
 
-`double cnMod(complex complexNum);`<br>
+`double cnMag(complex complexNum);`<br>
 Takes a complex number.<br>
 Returns the magnitude of a complex number.
 
@@ -118,9 +118,17 @@ Returns the complex number multiplied by a scalar.
 Takes a complex number, and another complex number.<br>
 Returns the product of two complex numbers.
 
-`complex cnDivide(complex complexNum1, complex complexNum2);`<br>
+`complex cnDivide(complex numerator, complex denominator);`<br>
 Takes a complex number, and another complex number.<br>
 Returns the quotient of two complex numbers.
+
+`complex cnPow(complex base, double power);`<br>
+Takes a complex number, and the power to raise the complex number to.<br>
+Returns the complex number raised to a real power.
+
+`complex cnPowComplex(complex base, complex power);`<br>
+Takes a complex number, and the power to raise the complex number to.<br>
+Returns the complex number raised to a complex power.
 
 `complex cnConjugate(complex complexNum);`<br>
 Takes a complex number.<br>
@@ -129,6 +137,10 @@ Returns the conjugate of the complex number.
 `complex cnExp(complex complexNum);`<br>
 Takes a complex number.<br>
 Returns e raised to the power of a complex number (Euler's formula).
+
+`complex cnLog(complex complexNum);`<br>
+Takes a complex number.<br>
+Returns the natural logarithm of a complex number.
 
 `double cnPrincipleArg(double angle);`<br>
 Takes an angle.<br>
