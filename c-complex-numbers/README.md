@@ -1,7 +1,4 @@
-# C ComplexNumbers
-## Credits
-This module was made with the help of [Ambesiwe Sonka](https://github.com/Ambesiwe).
-
+# C Complex Numbers
 ## Overview
 This module is for complex number operations in C.<br>
 With it, you can create, edit, and do computations with complex numbers, including but not limited to:
@@ -12,20 +9,55 @@ With it, you can create, edit, and do computations with complex numbers, includi
 
 Note: All angles are measured in radians.
 
-In this folder, test.c was made to test the module.<br>
-It can also be used as a reference to see how the module was intended to be used.
+## Credits
+This module was made with the help of [Ambesiwe Sonka](https://github.com/Ambesiwe).
 
-## How To Use
-Copy the header and implementation files anywhere where your C-compiler can find it (usually at the standard directory or in the same directory as your main file). Then import the module like you would any other module, using `#include`.
+## Features
+This module was designed with the intention of being embedded-friendly:
+- Minimal memory footprint
+- No dynamic memory usage (no `malloc` and `free`)
+- Low namespace pollution (uses `cn` prefix)
 
-## Data Structures
-### Complex Number
-This is a struct containing two variables that determine the value the complex number, as well as whether these variables represents rectangular or polar form. Create a complex number like you would any other struct:<br>
-`complex myComplexNum;`<br>
-then myComplexNum will be a complex struct.
+## Quick Start
+```c
+#include <stdio.h>
+#include "complex_numbers.h"
 
-## Functions
-### Creating
+int main() {
+  complex z1 = cnRect(1.0, 2.0); //1+2i
+  complex z2 = cnPolar(3.0, 0.785); //5 @ pi/4
+
+  complex sum = cnAdd(z1, z2);
+  printf("Real: %f, Imag: %f\n", cnReal(&sum), cnImag(&sum));
+
+  return 0;
+}
+```
+
+## Installation & Dependencies
+Copy the header and implementation files anywhere where your C-compiler can find it (such as in the same directory as your main file). Then import the module like you would any other module, using `#include`.
+
+This module has the following dependencies:<br>
+Standard: `math.h`, `stdbool.h`<br>
+This Repository: None
+
+## API Reference
+### Macros
+#### Pi
+You can define a macro called `PI` before you `#include` the module, and this will modify the value of pi used throughout the module.
+
+### Data Structures
+#### Complex Number
+This is a struct containing two variables that determine the value of the complex number, as well as whether these variables represents rectangular or polar form. Create a complex number like you would any other struct:
+```c
+complex myComplexNum;
+```
+then `myComplexNum` will be a struct representing a complex number.
+
+### Functions
+<details>
+<summary>Click to view all Creating functions</summary>
+
 `complex cnRect(double real, double imag);`<br>
 Takes the real part of the complex number, and the imaginary part of the complex number.<br>
 Returns a complex number in rectangular form.
@@ -46,32 +78,40 @@ Returns a complex number in rectangular form, with only an imaginary component.
 Takes the argument of the complex number.<br>
 Returns a complex number in polar form, with magnitude 1.
 
-### Reading
-`double cnReal(complex complexNum);`<br>
+</details>
+
+<details>
+<summary>Click to view all Reading functions</summary>
+
+`double cnReal(const complex *complexNum);`<br>
 Takes a complex number.<br>
 Returns the real component of a complex number.
 
-`double cnImag(complex complexNum);`<br>
+`double cnImag(const complex *complexNum);`<br>
 Takes a complex number.<br>
 Returns the imaginary component of a complex number.
 
-`double cnMag(complex complexNum);`<br>
+`double cnMag(const complex *complexNum);`<br>
 Takes a complex number.<br>
 Returns the magnitude of a complex number.
 
-`double cnArg(complex complexNum);`<br>
+`double cnArg(const complex *complexNum);`<br>
 Takes a complex number.<br>
 Returns the argument of a complex number.
 
-`cnBoolean_t cnIsRect(complex complexNum);`<br>
+`bool cnIsRect(const complex *complexNum);`<br>
 Takes a complex number.<br>
 Returns whether or not a complex number is in rectangular form.
 
-`cnBoolean_t cnIsPolar(complex complexNum);`<br>
+`bool cnIsPolar(const complex *complexNum);`<br>
 Takes a complex number.<br>
 Returns whether or not a complex number is in polar form.
 
-### Updating
+</details>
+
+<details>
+<summary>Click to view all Updating functions</summary>
+
 `void cnSetReal(complex* complexNum, double real);`<br>
 Sets the real component of a complex number.<br>
 Takes a complex number, and the new real component of the complex number.
@@ -88,12 +128,16 @@ Takes a complex number, and the new magnitude of the complex number.
 Sets the argument of a complex number.<br>
 Takes a complex number, and the new argument of the complex number.
 
-`void cnSetForm(complex* complexNum, cnBoolean_t rect);`<br>
+`void cnSetForm(complex* complexNum, bool rect);`<br>
 Sets whether or not a complex number is in rectangular form.<br>
-Warning: This changes the value of the complex number.<br>
+Warning: This changes the effective-value of the complex number, not just the form.<br>
 Takes a complex number, and whether or not the complex number is set to rectangular form, else polar form.
 
-### Operations
+</details>
+
+<details>
+<summary>Click to view Operations functions</summary>
+
 `complex cnRectForm(complex complexNum);`<br>
 Takes a complex number.<br>
 Returns the complex number in rectangular form.
@@ -118,8 +162,8 @@ Returns the complex number multiplied by a scalar.
 Takes a complex number, and another complex number.<br>
 Returns the product of two complex numbers.
 
-`complex cnDivide(complex numerator, complex denominator);`<br>
-Takes a complex number, and another complex number.<br>
+`bool cnDivide(complex *quotient, complex numerator, complex denominator);`<br>
+Takes a pointer to where the result will be written, a complex number, and another complex number.<br>
 Returns the quotient of two complex numbers.
 
 `complex cnPow(complex base, double power);`<br>
@@ -138,10 +182,12 @@ Returns the conjugate of the complex number.
 Takes a complex number.<br>
 Returns e raised to the power of a complex number (Euler's formula).
 
-`complex cnLog(complex complexNum);`<br>
+`bool cnLog(complex *result, complex complexNum);`<br>
 Takes a complex number.<br>
 Returns the natural logarithm of a complex number.
 
 `double cnPrincipleArg(double angle);`<br>
 Takes an angle.<br>
 Returns the principle argument of an angle.
+
+</details>

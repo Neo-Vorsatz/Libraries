@@ -3,3 +3,6 @@
 
 #the VS Code settings
 .vscode/
+
+#the program used to test Quick Start snippets
+test_quick_start.c

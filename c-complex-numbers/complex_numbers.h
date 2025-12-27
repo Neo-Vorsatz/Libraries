@@ -1,21 +1,33 @@
 // Complex Numbers Library, for complex number operations
 // Header file
 // by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 21 December 2025
+// Last updated: 25 December 2025
 
-#ifndef COMPLEXNUMBERS_H
-#define COMPLEXNUMBERS_H
+//Header guard
+#ifndef COMPLEX_NUMBERS_H
+#define COMPLEX_NUMBERS_H
+
+//Includes
+#include <stdbool.h>
+
+//C++ compatibility
+#ifdef __cplusplus
+  extern "C" {
+#endif
 
 /* TYPE DEFINITIONS ================================*/
 
-//Boolean
-typedef int cnBoolean_t;
-
 //Structure for complex numbers
 typedef struct{
-  double real_mod; //real component or magnitude
-  double imag_arg; //imaginary component or phase
-  cnBoolean_t rect_form; //whether the complex number is in rectangular form or not (otherwise in polar form)
+  union {
+    double real; //real component
+    double mod; //modulus or magnitude
+  };
+  union {
+    double imag; //imaginary component
+    double arg; //argument or phase
+  };
+  bool rect_form; //whether the complex number is in rectangular form or not (otherwise in polar form)
 } complex;
 
 /*================================*/
@@ -66,42 +78,42 @@ complex cnA(double arg);
  * 
  * @return The real component of a complex number
  */
-double cnReal(complex complexNum);
+double cnReal(const complex *complexNum);
 
 /**
  * @param complexNum A complex number
  * 
  * @return The imaginary component of a complex number
  */
-double cnImag(complex complexNum);
+double cnImag(const complex *complexNum);
 
 /**
  * @param complexNum A complex number
  * 
  * @return The magnitude of a complex number
  */
-double cnMag(complex complexNum);
+double cnMag(const complex *complexNum);
 
 /**
  * @param complexNum A complex number
  * 
  * @return The argument of a complex number
  */
-double cnArg(complex complexNum);
+double cnArg(const complex *complexNum);
 
 /**
  * @param complexNum A complex number
  * 
  * @return Whether or not a complex number is in rectangular form
  */
-cnBoolean_t cnIsRect(complex complexNum);
+bool cnIsRect(const complex *complexNum);
 
 /**
  * @param complexNum A complex number
  * 
  * @return Whether or not a complex number is in polar form
  */
-cnBoolean_t cnIsPolar(complex complexNum);
+bool cnIsPolar(const complex *complexNum);
 
 /*================================*/
 /* UPDATING ================================*/
@@ -140,12 +152,13 @@ void cnSetArg(complex* complexNum, double arg);
 
 /**
  * @brief Sets whether or not a complex number is in rectangular form
- * Warning: This changes the value of the complex number
+ * 
+ * Warning: This changes the effective-value of the complex number, not just the form
  * 
  * @param complexNum A complex number
  * @param rect Whether or not the complex number is set to rectangular form, else polar form
  */
-void cnSetForm(complex* complexNum, cnBoolean_t rect);
+void cnSetForm(complex* complexNum, bool rect);
 
 /*================================*/
 /* OPERATIONS ================================*/
@@ -197,12 +210,15 @@ complex cnScale(complex complexNum, double scalar);
 complex cnMultiply(complex complexNum1, complex complexNum2);
 
 /**
- * @param complexNum1 A complex number
- * @param complexNum2 Another complex number
+ * @brief Calculates the quotient of two complex numbers
  * 
- * @return The quotient of two complex numbers
+ * @param quotient A pointer to where the result will be written
+ * @param numerator A complex number
+ * @param denominator Another complex number
+ * 
+ * @return 1 (true) if the two matrices are equal, otherwise returns 0 (false)
  */
-complex cnDivide(complex numerator, complex denominator);
+bool cnDivide(complex *quotient, complex numerator, complex denominator);
 
 /**
  * @param base A complex number
@@ -239,7 +255,7 @@ complex cnExp(complex complexNum);
  * 
  * @return The natural logarithm of a complex number
  */
-complex cnLog(complex complexNum);
+bool cnLog(complex *result, complex complexNum);
 
 /**
  * @param angle An angle
@@ -249,5 +265,9 @@ complex cnLog(complex complexNum);
 double cnPrincipleArg(double angle);
 
 /*================================*/
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

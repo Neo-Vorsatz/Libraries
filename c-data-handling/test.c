@@ -1,13 +1,13 @@
 // Programme to test the data handling library; DataHandling
 // by Neo Vorsatz
-// Last updated: 2 December 2025
+// Last updated: 25 December 2025
 
-#include "DataHandling.c"
+#include "data_handling.c"
 #include <stdio.h>
 
-void printData(double data[], int length) {
+void printData(double data[], unsigned int length) {
     printf("{");
-    for (int i=0; i<length-1; i++) {
+    for (unsigned int i=0; i<length-1; i++) {
         printf("%.3f, ", data[i]);
     }
     printf("%.3f}", data[length-1]);
@@ -15,7 +15,7 @@ void printData(double data[], int length) {
 
 int main() {
   double testData[] = {1.0, 5.2, 7.3, 0.0, 2.9, 5.2, 13.4};
-  int length = sizeof(testData)/sizeof(testData[0]);
+  unsigned int length = sizeof(testData)/sizeof(testData[0]);
   printf("Test data: ");
   printData(testData, length);
   printf("\n");
@@ -79,4 +79,7 @@ int main() {
   //Testing quartiles
   printf("Quartiles: %.3f, %.3f, %.3f | expected: 1, 5.2, 7.3\n",
     dhLowerQuartile(testData, length), dhMedian(testData, length), dhUpperQuartile(testData, length));
+
+  //Finished
+  return 0;
 }

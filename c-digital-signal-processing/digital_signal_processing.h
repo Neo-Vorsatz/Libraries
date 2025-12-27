@@ -1,11 +1,33 @@
 // Digial Signal Processing Library, for processing signals
 // Header file
-// by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 17 December 2025
+// by Neo Vorsatz
+// Last updated: 26 December 2025
 
-#ifndef DIGITALSIGNALPROCESSING_H
-#define DIGITALSIGNALPROCESSING_H
+//Header guard
+#ifndef DIGITAL_SIGNAL_PROCESSING_H
+#define DIGITAL_SIGNAL_PROCESSING_H
 
+//C++ compatibility
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
+/* TYPE DEFINITIONS ================================*/
+
+//Structure for signals
+typedef struct{
+  double *samples; //pointer to array of samples
+  unsigned int used_len; //number of samples
+  unsigned int max_len; //maximum number of samples
+} signal;
+
+//Structure for a system
+typedef struct{
+  signal imp_resp; //impulse response
+  signal history; //past inputs
+} system;
+
+/*================================*/
 /* ELECTRICITY ================================*/
 
 /**
@@ -14,7 +36,7 @@
  * 
  * @return The Direct-Current component of a signal
  */
-double dsDC(double signal[], int length);
+double dsDC(double signal[], unsigned int length);
 
 /**
  * @brief Removes the Direct-Current offset from a signal
@@ -23,7 +45,7 @@ double dsDC(double signal[], int length);
  * @param signal A pointer to the array of the signal
  * @param length The number of samples
  */
-void dsAC(double write[], double signal[], int length);
+void dsAC(double write[], double signal[], unsigned int length);
 
 /**
  * @brief Gets the power of the signal at each time step
@@ -32,7 +54,7 @@ void dsAC(double write[], double signal[], int length);
  * @param signal A pointer to the array of the signal
  * @param length The number of samples
  */
-void dsPower(double write[], double signal[], int length);
+void dsPower(double write[], double signal[], unsigned int length);
 
 /**
  * @param signal A pointer to the array of the signal
@@ -40,7 +62,7 @@ void dsPower(double write[], double signal[], int length);
  * 
  * @return The total energy of a signal
  */
-double dsEnergy(double signal[], int length);
+double dsEnergy(double signal[], unsigned int length);
 
 /**
  * @brief Gets the cumulative sum of energy of a signal
@@ -49,7 +71,7 @@ double dsEnergy(double signal[], int length);
  * @param signal A pointer to the array of the signal
  * @param length The number of samples
  */
-void dsCumSumEnergy(double write[], double signal[], int length);
+void dsCumSumEnergy(double write[], double signal[], unsigned int length);
 
 /**
  * @param signal A pointer to the array of the signal
@@ -57,7 +79,7 @@ void dsCumSumEnergy(double write[], double signal[], int length);
  * 
  * @return The average power of a signal
  */
-double dsAvgPower(double signal[], int length);
+double dsAvgPower(double signal[], unsigned int length);
 
 /**
  * @param signal A pointer to the array of the signal
@@ -65,7 +87,7 @@ double dsAvgPower(double signal[], int length);
  * 
  * @return The Alternating-Current Root-Mean-Square of a signal
  */
-double dsACRMS(double signal[], int length);
+double dsACRMS(double signal[], unsigned int length);
 
 /**
  * @param signal A pointer to the array of the signal
@@ -73,7 +95,7 @@ double dsACRMS(double signal[], int length);
  * 
  * @return The Root-Mean-Square of a signal
  */
-double dsRMS(double signal[], int length);
+double dsRMS(double signal[], unsigned int length);
 
 /**
  * @param signal A pointer to the array of the signal
@@ -81,7 +103,7 @@ double dsRMS(double signal[], int length);
  * 
  * @return The Direct-Current power of a signal
  */
-double dsDCPower(double signal[], int length);
+double dsDCPower(double signal[], unsigned int length);
 
 /**
  * @param signal A pointer to the array of the signal
@@ -89,7 +111,7 @@ double dsDCPower(double signal[], int length);
  * 
  * @return The Alternating-Current power of a signal
  */
-double dsACPower(double signal[], int length);
+double dsACPower(double signal[], unsigned int length);
 
 /*================================*/
 /* FOURIER ================================*/
@@ -97,5 +119,9 @@ double dsACPower(double signal[], int length);
 
 
 /*================================*/
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

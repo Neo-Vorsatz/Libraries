@@ -1,19 +1,19 @@
 // Data Handling Library, for processing data
 // Implementation file
 // by Neo Vorsatz
-// Last updated: 2 December 2025
+// Last updated: 27 December 2025
 
 #include <math.h>
-#include "DataHandling.h"
+#include "data_handling.h"
 
 /* SUMMING ================================*/
 
 //Returns the sum of an array of data values
-double dhSum(double data[], int length) {
+double dhSum(const double data[], unsigned int length) {
   //Initialise the sum
   double sum = 0.0;
   //For each data point
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Add the data point to the sum
     sum += data[i];
   }
@@ -22,11 +22,11 @@ double dhSum(double data[], int length) {
 }
 
 //Gets the cumulative sum of an array of data values
-void dhCumSum(double write[], double data[], int length) {
+void dhCumSum(double write[], const double data[], unsigned int length) {
   //Initialise the sum
   double sum = 0.0;
   //For each data point
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Add the data point to the sum
     sum += data[i];
     //Write the cumulative sum to the corresponding index
@@ -38,11 +38,11 @@ void dhCumSum(double write[], double data[], int length) {
 /* SORTING ================================*/
 
 //Copies an array of data into another array
-void dhCopy(double write[], double data[], int length) {
+void dhCopy(double write[], const double data[], unsigned int length) {
   //If the pointers aren't identical
   if (write!=data) {
     //For each data point
-    for (int i=0; i<length; i++) {
+    for (unsigned int i=0; i<length; i++) {
       //Copy the data point
       write[i] = data[i];
     }
@@ -57,7 +57,7 @@ static void qsort_recursive(double array[], int low, int high) {
     //Index of the new partition
     int part_i = low;
     //For each element within the partition range, except the last element
-    for (int i=low; i<high; i++) {
+    for (unsigned int i=low; i<high; i++) {
       //If this element is smaller than the pivot
       if (array[i]<pivot) {
         //Place this element left of the new partition, via a swap
@@ -79,7 +79,7 @@ static void qsort_recursive(double array[], int low, int high) {
 }
 
 //Sorts an array of data in ascending order using the Quick Sort algorithm
-void dhQuickSort(double write[], double data[], int length) {
+void dhQuickSort(double write[], const double data[], unsigned int length) {
   //Copy the contents from the source to the destination
   dhCopy(write, data, length);
   //Call the recursive function
@@ -126,7 +126,7 @@ static void msort_recursive(double array[], double temp[], int low, int high) {
     }
 
     //For each element in the sorted array
-    for (int i=low; i<=high; i++) {
+    for (unsigned int i=low; i<=high; i++) {
       //Copy the element into the original array
       array[i] = temp[i];
     }
@@ -134,7 +134,7 @@ static void msort_recursive(double array[], double temp[], int low, int high) {
 }
 
 //Sorts an array of data in ascending order using the Merge Sort algorithm
-void dhMergeSort(double write[], double data[], int length) {
+void dhMergeSort(double write[], const double data[], unsigned int length) {
   //Copy the contents from the source to the destination
   dhCopy(write, data, length);
   //Create temporary array for merging
@@ -144,16 +144,16 @@ void dhMergeSort(double write[], double data[], int length) {
 }
 
 //Reverses the elements in an array
-void dhReverse(double write[], double data[], int length) {
+void dhReverse(double write[], const double data[], unsigned int length) {
   //Create temporary array for reversing
   double temp[length];
   //For each element in the original array
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Copy the element from the original array to the temporary array
     temp[length-1-i] = data[i];
   }
   //For each element in the temporary array
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Copy the element from the temporary array to the output
     write[i] = temp[i];
   }
@@ -163,17 +163,17 @@ void dhReverse(double write[], double data[], int length) {
 /* STATISTICS ================================*/
 
 //Returns the smallest value in an array of data values
-double dhMin(double data[], int length) {
+double dhMin(const double data[], unsigned int length) {
   //If there are no elements
   if (length<1) {
     //Return 0 as the minimum
-    return 0;
+    return 0.0;
   }
 
   //Assume the minimum is the first value
   double min = data[0];
   //For each data point other than the first
-  for (int i=1; i<length; i++) {
+  for (unsigned int i=1; i<length; i++) {
     //If this value is less than the minimum
     if (data[i]<min) {
       //Update the minimum
@@ -184,17 +184,17 @@ double dhMin(double data[], int length) {
 }
 
 //Returns the largest value in an array of data values
-double dhMax(double data[], int length) {
+double dhMax(const double data[], unsigned int length) {
   //If there are no elements
   if (length<1) {
     //Return 0 as the maximum
-    return 0;
+    return 0.0;
   }
 
   //Assume the maximum is the first value
   double max = data[0];
   //For each data point other than the first
-  for (int i=1; i<length; i++) {
+  for (unsigned int i=1; i<length; i++) {
     //If this value is more than the maximum
     if (data[i]>max) {
       //Update the maximum
@@ -205,7 +205,13 @@ double dhMax(double data[], int length) {
 }
 
 //Returns the mean/average/expected value of an array of data values
-double dhMean(double data[], int length) {
+double dhMean(const double data[], unsigned int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the mean
+    return 0.0;
+  }
+
   //Get the sum
   double sum = dhSum(data, length);
   //Return the average
@@ -213,54 +219,57 @@ double dhMean(double data[], int length) {
 }
 
 //Returns the mean/average/expected value of an array of data values
-double dhAvg(double data[], int length) {
+double dhAvg(const double data[], unsigned int length) {
   //Call the dhMean function
   return dhMean(data, length);
 }
 
 //Returns the mean/average/expected value of an array of data values
-double dhExpectedValue(double data[], int length) {
+double dhExpectedValue(const double data[], unsigned int length) {
   //Call the dhMean function
   return dhMean(data, length);
 }
 
 //Returns the varience of an array of data values, assuming the data represents the population
-double dhVar(double data[], int length) {
-  //Initialise an array of square-differences
-  double sqrDiff[length];
+double dhVar(const double data[], unsigned int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the variance
+    return 0.0;
+  }
+
+  //Initialise sum of square-differences
+  double sumSqrDiff = 0.0;
   //Get the mean/average/expected value
   double mean = dhMean(data, length);
   //For each data point
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Get the difference
     double diff = data[i]-mean;
-    //Save the squared difference
-    sqrDiff[i] = diff*diff;
+    //Add the squared difference to the sum
+    sumSqrDiff += diff*diff;
   }
+
   //Return the mean/average/expected value of the squared difference
-  return dhMean(sqrDiff, length);
+  return sumSqrDiff/length;
 }
 
 //Returns the standard deviance of an array of data values, assuming the data represents the population
-double dhStdDev(double data[], int length) {
+double dhStdDev(const double data[], unsigned int length) {
   //The standard deviance is the square-root of the variance
   return sqrt(dhVar(data, length));
 }
 
-//Returns the median of an array of data values
-double dhMedian(double data[], int length) {
+//Returns the median of a sorted array of data values
+double dhMedianSorted(const double sortedData[], unsigned int length) {
   //If there are no elements
   if (length<1) {
     //Return 0 as the median
-    return 0;
+    return 0.0;
   }
 
   //Find the middle index
   int middle = length/2;
-  //Declare an array for the sorted data
-  double sortedData[length];
-  //Sort the data
-  dhMergeSort(sortedData, data, length);
   //If there are an even number of data values
   if (length%2==0) {
     //Calculate the median
@@ -272,57 +281,79 @@ double dhMedian(double data[], int length) {
   return sortedData[middle];
 }
 
-//Returns the lower quartile of an array of data values
-double dhLowerQuartile(double data[], int length) {
-  //If there are no elements
-  if (length<1) {
-    //Return 0 as the median
-    return 0;
-  }
-  //If there's only 1 element
-  if (length<2) {
-    //Return the only element
-    return data[0];
-  }
-
-  //Find the middle index
-  int middle = length/2;
+//Returns the median of an array of data values
+double dhMedian(const double data[], unsigned int length) {
   //Declare an array for the sorted data
   double sortedData[length];
   //Sort the data
   dhMergeSort(sortedData, data, length);
-  //Return the median of the lower half of data
-  return dhMedian(sortedData, middle);
+  //Return the median of the sorted data
+  return dhMedianSorted(sortedData, length);
 }
 
-//Returns the upper quartile of an array of data values
-double dhUpperQuartile(double data[], int length) {
+//Returns the lower quartile of a sorted array of data values
+double dhLowerQuartileSorted(const double sortedData[], unsigned int length) {
   //If there are no elements
   if (length<1) {
-    //Return 0 as the median
-    return 0;
+    //Return 0 as the lower quartile
+    return 0.0;
   }
   //If there's only 1 element
   if (length<2) {
     //Return the only element
-    return data[0];
+    return sortedData[0];
   }
 
   //Find the middle index
   int middle = length/2;
+  //Return the median of the lower half of data
+  return dhMedianSorted(sortedData, middle);
+}
+
+//Returns the lower quartile of an array of data values
+double dhLowerQuartile(const double data[], unsigned int length) {
   //Declare an array for the sorted data
   double sortedData[length];
   //Sort the data
   dhMergeSort(sortedData, data, length);
+  //Return the lower quartile of the sorted data
+  return dhLowerQuartileSorted(sortedData, length);
+}
+
+//Returns the upper quartile of a sorted array of data values
+double dhUpperQuartileSorted(const double sortedData[], unsigned int length) {
+  //If there are no elements
+  if (length<1) {
+    //Return 0 as the upper quartile
+    return 0.0;
+  }
+  //If there's only 1 element
+  if (length<2) {
+    //Return the only element
+    return sortedData[0];
+  }
+
+  //Find the middle index
+  int middle = length/2;
   //Find the starting index of the upper half of data
-  double* start = sortedData+middle;
+  const double* start = sortedData+middle;
   //If there are an odd number of data values
   if (length%2!=0) {
     //Skip over the middle value (median)
     start++;
   }
   //Return the median of the upper half of data
-  return dhMedian(start, middle);
+  return dhMedianSorted(start, middle);
+}
+
+//Returns the upper quartile of an array of data values
+double dhUpperQuartile(const double data[], unsigned int length) {
+  //Declare an array for the sorted data
+  double sortedData[length];
+  //Sort the data
+  dhMergeSort(sortedData, data, length);
+  //Return the upper quartile of the sorted data
+  return dhUpperQuartileSorted(sortedData, length);
 }
 
 /*================================*/

@@ -1,10 +1,16 @@
 // Data Handling Library, for processing data
 // Header file
 // by Neo Vorsatz
-// Last updated: 17 December 2025
+// Last updated: 27 December 2025
 
-#ifndef DATAHANDLING_H
-#define DATAHANDLING_H
+//Header guard
+#ifndef DATA_HANDLING_H
+#define DATA_HANDLING_H
+
+//C++ compatibility
+#ifdef __cplusplus
+  extern "C" {
+#endif
 
 /* SUMMING ================================*/
 
@@ -14,7 +20,7 @@
  * 
  * @return The sum of an array of data values
  */
-double dhSum(double data[], int length);
+double dhSum(const double data[], unsigned int length);
 
 /**
  * @brief Gets the cumulative sum of an array of data values
@@ -23,7 +29,7 @@ double dhSum(double data[], int length);
  * @param data A pointer to the array of data values
  * @param length The number of data values
  */
-void dhCumSum(double write[], double data[], int length);
+void dhCumSum(double write[], const double data[], unsigned int length);
 
 /*================================*/
 /* SORTING ================================*/
@@ -35,7 +41,7 @@ void dhCumSum(double write[], double data[], int length);
  * @param data A pointer to the array of data values
  * @param length The number of data values
  */
-void dhCopy(double write[], double data[], int length);
+void dhCopy(double write[], const double data[], unsigned int length);
 
 /**
  * @brief Sorts an array of data in ascending order using the Quick Sort algorithm
@@ -44,7 +50,7 @@ void dhCopy(double write[], double data[], int length);
  * @param data A pointer to the array of data values
  * @param length The number of data values
  */
-void dhQuickSort(double write[], double data[], int length);
+void dhQuickSort(double write[], const double data[], unsigned int length);
 
 /**
  * @brief Sorts an array of data in ascending order using the Merge Sort algorithm
@@ -53,7 +59,7 @@ void dhQuickSort(double write[], double data[], int length);
  * @param data A pointer to the array of data values
  * @param length The number of data values
  */
-void dhMergeSort(double write[], double data[], int length);
+void dhMergeSort(double write[], const double data[], unsigned int length);
 
 /**
  * @brief Reverses an array of data
@@ -62,7 +68,7 @@ void dhMergeSort(double write[], double data[], int length);
  * @param data A pointer to the array of data values
  * @param length The number of data values
  */
-void dhReverse(double write[], double data[], int length);
+void dhReverse(double write[], const double data[], unsigned int length);
 
 /*================================*/
 /* STATISTICS ================================*/
@@ -73,7 +79,7 @@ void dhReverse(double write[], double data[], int length);
  * 
  * @return The smallest value in an array of data values
  */
-double dhMin(double data[], int length);
+double dhMin(const double data[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -81,7 +87,7 @@ double dhMin(double data[], int length);
  * 
  * @return The largest value in an array of data values
  */
-double dhMax(double data[], int length);
+double dhMax(const double data[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -89,17 +95,7 @@ double dhMax(double data[], int length);
  * 
  * @return The mean/average/expected value of an array of data values
  */
-double dhMean(double data[], int length);
-
-/**
- * @brief Does the same thing as the dhMean function
- * 
- * @param data A pointer to the array of data values
- * @param length The number of data values
- * 
- * @return The mean/average/expected value of an array of data values
- */
-double dhAvg(double data[], int length);
+double dhMean(const double data[], unsigned int length);
 
 /**
  * @brief Does the same thing as the dhMean function
@@ -109,7 +105,17 @@ double dhAvg(double data[], int length);
  * 
  * @return The mean/average/expected value of an array of data values
  */
-double dhExpectedValue(double data[], int length);
+double dhAvg(const double data[], unsigned int length);
+
+/**
+ * @brief Does the same thing as the dhMean function
+ * 
+ * @param data A pointer to the array of data values
+ * @param length The number of data values
+ * 
+ * @return The mean/average/expected value of an array of data values
+ */
+double dhExpectedValue(const double data[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -117,7 +123,7 @@ double dhExpectedValue(double data[], int length);
  * 
  * @return The varience of an array of data values, assuming the data represents the population
  */
-double dhVar(double data[], int length);
+double dhVar(const double data[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -125,7 +131,15 @@ double dhVar(double data[], int length);
  * 
  * @return The standard deviance of an array of data values, assuming the data represents the population
  */
-double dhStdDev(double data[], int length);
+double dhStdDev(const double data[], unsigned int length);
+
+/**
+ * @param sortedData A pointer to the sorted array of data values
+ * @param length The number of data values
+ * 
+ * @return The median of a sorted array of data values
+ */
+double dhMedianSorted(const double sortedData[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -133,7 +147,15 @@ double dhStdDev(double data[], int length);
  * 
  * @return The median of an array of data values
  */
-double dhMedian(double data[], int length);
+double dhMedian(const double data[], unsigned int length);
+
+/**
+ * @param sortedData A pointer to the sorted array of data values
+ * @param length The number of data values
+ * 
+ * @return The lower quartile of a sorted array of data values
+ */
+double dhLowerQuartileSorted(const double sortedData[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -141,7 +163,15 @@ double dhMedian(double data[], int length);
  * 
  * @return The lower quartile of an array of data values
  */
-double dhLowerQuartile(double data[], int length);
+double dhLowerQuartile(const double data[], unsigned int length);
+
+/**
+ * @param sortedData A pointer to the sorted array of data values
+ * @param length The number of data values
+ * 
+ * @return The upper quartile of a sorted array of data values
+ */
+double dhUpperQuartileSorted(const double sortedData[], unsigned int length);
 
 /**
  * @param data A pointer to the array of data values
@@ -149,8 +179,12 @@ double dhLowerQuartile(double data[], int length);
  * 
  * @return The upper quartile of an array of data values
  */
-double dhUpperQuartile(double data[], int length);
+double dhUpperQuartile(const double data[], unsigned int length);
 
 /*================================*/
+
+#ifdef __cplusplus
+  }
+#endif
 
 #endif

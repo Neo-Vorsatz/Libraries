@@ -1,47 +1,52 @@
 // Digial Signal Processing Library, for processing signals
 // Implementation file
-// by Ambesiwe Sonka and Neo Vorsatz
-// Last updated: 27 November 2025
+// by Neo Vorsatz
+// Last updated: 25 December 2025
 
 #include <math.h>
-#include "DigitalSignalProcessing.h"
+#include "digital_signal_processing.h"
 
-/* USER MAY EDIT ================================*/
+/* EDIT WITH MACROS ================================*/
 
-#include "../C DataHandling/DataHandling.h"
-#include "../C ComplexNumbers/ComplexNumbers.h"
+#ifndef PI
+  #define PI 3.14159265358979323846 //Same value in math.h, but defined locally
+#endif
 
 /*================================*/
+
+#include "../c-data-handling/data_handling.h"
+#include "../c-complex-numbers/complex_numbers.h"
+
 /* ELECTRICITY ================================*/
 
 //Returns the Direct-Current component of a signal
-double dsDC(double signal[], int length) {
+double dsDC(double signal[], unsigned int length) {
   //Call the dhMean function
   return dhMean(signal, length);
 }
 
 //Removes the Direct-Current offset from a signal
-void dsAC(double write[], double signal[], int length) {
+void dsAC(double write[], double signal[], unsigned int length) {
   //Get the DC component
   double dc = dhMean(signal, length);
   //For each data point
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Subtract the DC offset
     write[i] = signal[i]-dc;
   }
 }
 
 //Gets the power of the signal at each time step
-void dsPower(double write[], double signal[], int length) {
+void dsPower(double write[], double signal[], unsigned int length) {
   //For each data point
-  for (int i=0; i<length; i++) {
+  for (unsigned int i=0; i<length; i++) {
     //Calculate the power
     write[i] = signal[i]*signal[i];
   }
 }
 
 //Returns the total energy of a signal
-double dsEnergy(double signal[], int length) {
+double dsEnergy(double signal[], unsigned int length) {
   //Create an array for the power of the signal
   double power[length];
   //Get the power of the signal
@@ -51,7 +56,7 @@ double dsEnergy(double signal[], int length) {
 }
 
 //Gets the cumulative sum of energy of a signal
-void dsCumSumEnergy(double write[], double signal[], int length) {
+void dsCumSumEnergy(double write[], double signal[], unsigned int length) {
   //Create an array for the power of the signal
   double power[length];
   //Get the power of the signal
@@ -61,7 +66,7 @@ void dsCumSumEnergy(double write[], double signal[], int length) {
 }
 
 //Returns the average power of a signal
-double dsAvgPower(double signal[], int length) {
+double dsAvgPower(double signal[], unsigned int length) {
   //Create an array for the power of the signal
   double power[length];
   //Get the power of the signal
@@ -71,19 +76,19 @@ double dsAvgPower(double signal[], int length) {
 }
 
 //Returns the Alternating-Current Root-Mean-Square of a signal
-double dsACRMS(double signal[], int length) {
+double dsACRMS(double signal[], unsigned int length) {
   //Call the dhStdDev function
   return dhStdDev(signal, length);
 }
 
 //Returns the Root-Mean-Square of a signal
-double dsRMS(double signal[], int length) {
+double dsRMS(double signal[], unsigned int length) {
   //The RMS is the square-root of the average power
   return sqrt(dsAvgPower(signal, length));
 }
 
 //Returns the Direct-Current power of a signal
-double dsDCPower(double signal[], int length) {
+double dsDCPower(double signal[], unsigned int length) {
   //Get the DC component
   double dc = dhMean(signal, length);
   //Return the power of the DC component
@@ -91,7 +96,7 @@ double dsDCPower(double signal[], int length) {
 }
 
 //Returns the Alternating-Current power of a signal
-double dsACPower(double signal[], int length) {
+double dsACPower(double signal[], unsigned int length) {
   //Call the dhVar function
   return dhVar(signal, length);
 }
