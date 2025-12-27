@@ -33,7 +33,7 @@ int main() {
 Copy the folder (and its contents) of this module, and the other modules it depends on. Place the copies anywhere where your C-compiler can find it (such as in the same directory as your main file). Then import the module like you would any other module, using `#include`.<br>
 It's recommended to copy this entire repository into somewhere you keep your installed libraries.
 ```bash
-git clone https://github.com/Neo-Vorsatz/Libraries.git
+git clone https://github.com/Neo-Vorsatz/Neo-Libraries.git
 ```
 
 This module has the following dependencies:<br>

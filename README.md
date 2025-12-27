@@ -4,7 +4,7 @@ This is a collection of libraries/modules I've programmed in C/C++, targetted to
 # Installation & Dependencies
 It's recommended to copy this entire repository into somewhere you keep your installed libraries, because some of the modules depend on other modules within this repository.
 ```bash
-git clone https://github.com/Neo-Vorsatz/Libraries.git
+git clone https://github.com/Neo-Vorsatz/Neo-Libraries.git
 ```
 
 Dependencies outside of this repository:<br>
