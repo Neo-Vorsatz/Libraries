@@ -19,17 +19,103 @@
 
 /* SYSTEMS ================================*/
 
+//Sets the members of a signal struct
 void dsNewSignal(signal *write, const double *samples, unsigned int used_len, unsigned int max_len) {
   write->samples = samples;
   write->used_len = used_len;
   write->max_len = max_len;
 }
 
+//Sets the members of a system struct
 void dsNewSystem(system *write, const signal *impulse_response, const signal *history) {
   write->imp_resp = *impulse_response;
   write->history = *history;
 }
 
+//Sets a signal to a pulse
+bool dsPulse(signal *write, double height, unsigned int width, unsigned int delay) {
+  //For each sample before the pulse
+  for (unsigned int i=0; i<delay; i++) {
+    //Set sample to 0
+    write->samples[i] = 0.0;
+  }
+  //Assume nothing goes wrong
+  bool success = true;
+  //Detemine length
+  if (delay+width>write->max_len) {
+    success = false;
+    write->used_len = write->max_len;
+  } else {
+    write->used_len = delay+width;
+  }
+  //For each sample in the pulse
+  for (unsigned int i=delay; i<write->used_len; i++) {
+    //Set sample to height
+    write->samples[i] = height;
+  }
+  //Return
+  return success;
+}
+
+//Sets a signal to an impulse
+bool dsImpulse(signal *write, double size, unsigned int delay) {
+  return dsPulse(write, size, 1, delay);
+}
+
+//Sets a signal to a step
+bool dsStep(signal *write, double height, unsigned int delay) {
+  //Set new length
+  write->used_len = write->max_len;
+  //Assume nothing goes wrong
+  bool success = true;
+  //If the step starts too late
+  if (delay>=write->max_len) {
+    success = false;
+    delay = write->max_len;
+  }
+  //For each sample before the step
+  for (unsigned int i=0; i<delay; i++) {
+    //Set sample to 0
+    write->samples[i] = 0.0;
+  }
+  //For each sample in the step
+  for (unsigned int i=delay; i<write->max_len; i++) {
+    //Set sample to height
+    write->samples[i] = height;
+  }
+  //Return
+  return success;
+}
+
+//Sets a signal to a ramp
+bool dsRamp(signal *write, double slope, unsigned int delay) {
+  //Set new length
+  write->used_len = write->max_len;
+  //Assume nothing goes wrong
+  bool success = true;
+  //If the step starts too late
+  if (delay>=write->max_len) {
+    success = false;
+    delay = write->max_len;
+  }
+  //For each sample before the ramp
+  for (unsigned int i=0; i<delay; i++) {
+    //Set sample to 0
+    write->samples[i] = 0.0;
+  }
+  //For each sample in the ramp
+  double height = 0.0;
+  for (unsigned int i=delay; i<write->max_len; i++) {
+    //Increase height by slope
+    height += slope;
+    //Set sample to the increased height
+    write->samples[i] = height;
+  }
+  //Return
+  return success;
+}
+
+//Shifts a signal
 bool dsTimeShift(signal *write, const signal *read, int shift) {
   //Assume nothing goes wrong
   bool success = true;
@@ -68,6 +154,7 @@ bool dsTimeShift(signal *write, const signal *read, int shift) {
   return success;
 }
 
+//Convolves two signals
 bool dsConvolve(signal *write, const signal *read1, const signal *read2) {
   //Assume nothing goes wrong
   bool success = true;
