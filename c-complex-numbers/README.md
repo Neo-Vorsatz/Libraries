@@ -112,23 +112,23 @@ Returns whether or not a complex number is in polar form.
 <details>
 <summary>Click to view all Updating functions</summary>
 
-`void cnSetReal(complex* complexNum, double real);`<br>
+`void cnSetReal(complex *complexNum, double real);`<br>
 Sets the real component of a complex number.<br>
 Takes a complex number, and the new real component of the complex number.
 
-`void cnSetImag(complex* complexNum, double imag);`<br>
+`void cnSetImag(complex *complexNum, double imag);`<br>
 Sets the imaginary component of a complex number.<br>
 Takes a complex number, and the new imaginary component of the complex number.
 
-`void cnSetMag(complex* complexNum, double mag);`<br>
+`void cnSetMag(complex *complexNum, double mag);`<br>
 Sets the magnitude of a complex number.<br>
 Takes a complex number, and the new magnitude of the complex number.
 
-`void cnSetArg(complex* complexNum, double arg);`<br>
+`void cnSetArg(complex *complexNum, double arg);`<br>
 Sets the argument of a complex number.<br>
 Takes a complex number, and the new argument of the complex number.
 
-`void cnSetForm(complex* complexNum, bool rect);`<br>
+`void cnSetForm(complex *complexNum, bool rect);`<br>
 Sets whether or not a complex number is in rectangular form.<br>
 Warning: This changes the effective-value of the complex number, not just the form.<br>
 Takes a complex number, and whether or not the complex number is set to rectangular form, else polar form.
@@ -137,6 +137,10 @@ Takes a complex number, and whether or not the complex number is set to rectangu
 
 <details>
 <summary>Click to view Operations functions</summary>
+
+`bool cnEqual(complex complexNum1, complex complexNum2, double tolerance);`<br>
+Takes a complex number, another complex number, and the tolerance to use when comparing floating points.<br>
+Returns whether or not two complex numbers are equal.
 
 `complex cnRectForm(complex complexNum);`<br>
 Takes a complex number.<br>
@@ -163,8 +167,9 @@ Takes a complex number, and another complex number.<br>
 Returns the product of two complex numbers.
 
 `bool cnDivide(complex *quotient, complex numerator, complex denominator);`<br>
+Calculates the quotient of two complex numbers.<br>
 Takes a pointer to where the result will be written, a complex number, and another complex number.<br>
-Returns the quotient of two complex numbers.
+Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
 `complex cnPow(complex base, double power);`<br>
 Takes a complex number, and the power to raise the complex number to.<br>
@@ -183,8 +188,9 @@ Takes a complex number.<br>
 Returns e raised to the power of a complex number (Euler's formula).
 
 `bool cnLog(complex *result, complex complexNum);`<br>
-Takes a complex number.<br>
-Returns the natural logarithm of a complex number.
+Calculates the natural logarithm of a complex number.<br>
+Takes a pointer to where the result will be written, and a complex number.<br>
+Returns 1 (true) if the process was successful, otherwise returns 0 (false).
 
 `double cnPrincipleArg(double angle);`<br>
 Takes an angle.<br>

@@ -195,6 +195,14 @@ int main() {
   printComplex(z0);
   printf(" | expected: 0+3.142i\n"); //0+PIi
 
+  //Testing equality
+  z1 = cnRect(0.0, 3.1416); //0+PIi
+  if (cnEqual(z0, z1, 0.0001)) {
+    printf("Equality: These values are equal.\n");
+  } else {
+    printf("Equality: These values are not equal.\n");
+  }
+
   //Testing principle argument
   printf("Principle argument: %.3f | expected: -1\n", cnPrincipleArg(5.283185307)); //-1+2*PI
 

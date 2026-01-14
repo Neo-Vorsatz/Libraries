@@ -104,7 +104,7 @@ bool cnIsPolar(const complex *complexNum){
 /* UPDATING ================================*/
 
 //Sets the real component of a complex number
-void cnSetReal(complex* complexNum, double real){
+void cnSetReal(complex *complexNum, double real){
   bool rect_form = complexNum->rect_form; //Save the current form
   *complexNum = cnRectForm(*complexNum); //Convert to rectangular form
   complexNum->real = real;
@@ -114,7 +114,7 @@ void cnSetReal(complex* complexNum, double real){
 }
 
 //Sets the imaginary component of a complex numbers
-void cnSetImag(complex* complexNum, double imag){
+void cnSetImag(complex *complexNum, double imag){
   bool rect_form = complexNum->rect_form; //Save the current form
   *complexNum = cnRectForm(*complexNum); //Convert to rectangular form
   complexNum->imag = imag;
@@ -124,7 +124,7 @@ void cnSetImag(complex* complexNum, double imag){
 }
 
 //Sets the magnitude of a complex number
-void cnSetMag(complex* complexNum, double mag){
+void cnSetMag(complex *complexNum, double mag){
   //Converting to polar form
   bool rect_form = complexNum->rect_form; //Save the current form
   *complexNum = cnPolarForm(*complexNum); //Convert to polar form
@@ -143,7 +143,7 @@ void cnSetMag(complex* complexNum, double mag){
 }
 
 //Sets the argument of a complex number
-void cnSetArg(complex* complexNum, double arg){
+void cnSetArg(complex *complexNum, double arg){
   bool rect_form = complexNum->rect_form; //Save the current form
   *complexNum = cnPolarForm(*complexNum); //Convert to polar form
   complexNum->arg = cnPrincipleArg(arg);
@@ -153,12 +153,45 @@ void cnSetArg(complex* complexNum, double arg){
 }
 
 //Sets whether or not a complex number is in rectangular form
-void cnSetForm(complex* complexNum, bool rect){
+void cnSetForm(complex *complexNum, bool rect){
   complexNum->rect_form = rect;
 }
 
 /*================================*/
 /* OPERATIONS ================================*/
+
+//Returns whether or not two complex numbers are equal
+bool cnEqual(complex complexNum1, complex complexNum2, double tolerance) {
+  if (complexNum1.rect_form) { //Do the check in rectangular form
+    //Convert the second complex number to rectangular form
+    complexNum2 = cnRectForm(complexNum2);
+
+    //Check if the real components are different
+    if (fabs(complexNum1.real-complexNum2.real)>tolerance) {
+      return false;
+    }
+    //Check if the imaginary components are different
+    if (fabs(complexNum1.imag-complexNum2.imag)>tolerance) {
+      return false;
+    }
+
+  } else { //Do the check in polar form
+    //Convert the second complex number to polar form
+    complexNum2 = cnPolarForm(complexNum2);
+
+    //Check if the magnitudes are different
+    if (fabs(complexNum1.mod-complexNum2.mod)>tolerance) {
+      return false;
+    }
+    //Check if the arguments are different and the magnitudes are not zero
+    if (fabs(complexNum1.arg-complexNum2.arg)>tolerance && fabs(complexNum1.mod)>tolerance) {
+      return false;
+    }
+  }
+
+  //All checks are passed
+  return true;
+}
 
 //Returns the complex number in rectangular form
 complex cnRectForm(complex complexNum) {

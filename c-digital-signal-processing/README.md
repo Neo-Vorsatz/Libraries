@@ -49,46 +49,53 @@ You can define a macro called `PI` before you `#include` the module, and this wi
 
 ### Functions
 <details>
+<summary>Click to view all Systems functions</summary>
+
+</details>
+<details>
 <summary>Click to view all Electricity functions</summary>
 
-`double dhDC(double signal[], unsigned int length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsDC(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the Direct-Current component of a signal.
 
-`void dhAC(double write[], double signal[], unsigned int length);`<br>
+`bool dsAC(signal *write, const signal *read);`<br>
 Removes the Direct-Current offset from a signal.<br>
-Takes a pointer to where the modified signal will be written, a pointer to the array of the signal, and the number of samples.
+Takes a pointer to where the modified signal will be written, and a pointer to the signal.<br>
+Returns 1 (true) if the process was successful, otherwise 0 (false) if there was not enough memory in 'write'.
 
-`void dhPower(double write[], double signal[], unsigned int length);`<br>
+`bool dsPower(signal *write, const signal *read);`<br>
 Gets the power of the signal at each time step.<br>
-Takes a pointer to where the power of the signal will be written, a pointer to the array of the signal, and the number of samples.
+Takes a pointer to where the power of the signal will be written, and a pointer to the signal.<br>
+Returns 1 (true) if the process was successful, otherwise 0 (false) if there was not enough memory in 'write'.
 
-`double dhEnergy(double signal[], unsigned int length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsEnergy(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the total energy of a signal.
 
-`void dhCumSumEnergy(double write[], double signal[], unsigned int length);`<br>
+`bool dsCumSumEnergy(signal *write, signal *read);`<br>
 Gets the cumulative sum of energy of a signal.<br>
-Takes a pointer to where the cumulative sum of energy will be written, a pointer to the array of the signal, and the number of samples.
+Takes a pointer to where the cumulative sum of energy will be written, and a pointer to the signal.<br>
+Returns 1 (true) if the process was successful, otherwise 0 (false) if there was not enough memory in 'write'.
 
-`double dhAvgPower(double signal[], unsigned int length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsAvgPower(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the average power of a signal.
 
-`double dhACRMS(double signal[], unsigned int length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsACRMS(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the Alternating-Current Root-Mean-Square of a signal.
 
-`double dhRMS(double signal[], double length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsRMS(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the Root-Mean-Square of a signal.
 
-`double dhDCPower(double signal[], unsigned int length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsDCPower(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the Direct-Current power of a signal.
 
-`double dhACPower(double signal[], unsigned int length);`<br>
-Takes a pointer to the array of the signal, and the number of samples.<br>
+`double dsACPower(const signal *read);`<br>
+Takes a pointer to the signal.<br>
 Returns the Alternating-Current power of a signal.
 
 </details>

@@ -124,7 +124,7 @@ bool cnIsPolar(const complex *complexNum);
  * @param complexNum A complex number
  * @param real The new real component of the complex number
  */
-void cnSetReal(complex* complexNum, double real);
+void cnSetReal(complex *complexNum, double real);
 
 /**
  * @brief Sets the imaginary component of a complex number
@@ -132,7 +132,7 @@ void cnSetReal(complex* complexNum, double real);
  * @param complexNum A complex number
  * @param imag The new imaginary component of the complex number
  */
-void cnSetImag(complex* complexNum, double imag);
+void cnSetImag(complex *complexNum, double imag);
 
 /**
  * @brief Sets the magnitude of a complex number
@@ -140,7 +140,7 @@ void cnSetImag(complex* complexNum, double imag);
  * @param complexNum A complex number
  * @param mag The new magnitude of the complex number
  */
-void cnSetMag(complex* complexNum, double mag);
+void cnSetMag(complex *complexNum, double mag);
 
 /**
  * @brief Sets the argument of a complex number
@@ -148,7 +148,7 @@ void cnSetMag(complex* complexNum, double mag);
  * @param complexNum A complex number
  * @param arg The new argument of the complex number
  */
-void cnSetArg(complex* complexNum, double arg);
+void cnSetArg(complex *complexNum, double arg);
 
 /**
  * @brief Sets whether or not a complex number is in rectangular form
@@ -158,10 +158,19 @@ void cnSetArg(complex* complexNum, double arg);
  * @param complexNum A complex number
  * @param rect Whether or not the complex number is set to rectangular form, else polar form
  */
-void cnSetForm(complex* complexNum, bool rect);
+void cnSetForm(complex *complexNum, bool rect);
 
 /*================================*/
 /* OPERATIONS ================================*/
+
+/**
+ * @param complexNum1 A complex number
+ * @param complexNum2 Another complex number
+ * @param tolerance The tolerance to use when comparing floating points
+ * 
+ * @return Whether or not two complex numbers are equal
+ */
+bool cnEqual(complex complexNum1, complex complexNum2, double tolerance);
 
 /**
  * @param complexNum A complex number
@@ -216,7 +225,7 @@ complex cnMultiply(complex complexNum1, complex complexNum2);
  * @param numerator A complex number
  * @param denominator Another complex number
  * 
- * @return 1 (true) if the two matrices are equal, otherwise returns 0 (false)
+ * @return 1 (true) if the process was successful, otherwise returns 0 (false)
  */
 bool cnDivide(complex *quotient, complex numerator, complex denominator);
 
@@ -251,9 +260,12 @@ complex cnConjugate(complex complexNum);
 complex cnExp(complex complexNum);
 
 /**
+ * @brief Calculates the natural logarithm of a complex number
+ * 
+ * @param result A pointer to where the result will be written
  * @param complexNum A complex number
  * 
- * @return The natural logarithm of a complex number
+ * @return 1 (true) if the process was successful, otherwise returns 0 (false)
  */
 bool cnLog(complex *result, complex complexNum);
 

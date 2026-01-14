@@ -1,11 +1,14 @@
 // Digial Signal Processing Library, for processing signals
 // Header file
 // by Neo Vorsatz
-// Last updated: 26 December 2025
+// Last updated: 14 January 2026
 
 //Header guard
 #ifndef DIGITAL_SIGNAL_PROCESSING_H
 #define DIGITAL_SIGNAL_PROCESSING_H
+
+//Includes
+#include <stdbool.h>
 
 //C++ compatibility
 #ifdef __cplusplus
@@ -28,90 +31,91 @@ typedef struct{
 } system;
 
 /*================================*/
+/* SYSTEMS ================================*/
+
+
+
+/*================================*/
 /* ELECTRICITY ================================*/
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The Direct-Current component of a signal
  */
-double dsDC(double signal[], unsigned int length);
+double dsDC(const signal *read);
 
 /**
  * @brief Removes the Direct-Current offset from a signal
  * 
  * @param write A pointer to where the modified signal will be written
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
+ * 
+ * @return 1 (true) if the process was successful, otherwise 0 (false) if there was not enough memory in 'write'
  */
-void dsAC(double write[], double signal[], unsigned int length);
+bool dsAC(signal *write, const signal *read);
 
 /**
  * @brief Gets the power of the signal at each time step
  * 
  * @param write A pointer to where the power of the signal will be written
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
+ * 
+ * @return 1 (true) if the process was successful, otherwise 0 (false) if there was not enough memory in 'write'
  */
-void dsPower(double write[], double signal[], unsigned int length);
+bool dsPower(signal *write, const signal *read);
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The total energy of a signal
  */
-double dsEnergy(double signal[], unsigned int length);
+double dsEnergy(const signal *read);
 
 /**
  * @brief Gets the cumulative sum of energy of a signal
  * 
  * @param write A pointer to where the cumulative sum of energy will be written
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
+ * 
+ * @return 1 (true) if the process was successful, otherwise 0 (false) if there was not enough memory in 'write'
  */
-void dsCumSumEnergy(double write[], double signal[], unsigned int length);
+bool dsCumSumEnergy(signal *write, signal *read);
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The average power of a signal
  */
-double dsAvgPower(double signal[], unsigned int length);
+double dsAvgPower(const signal *read);
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The Alternating-Current Root-Mean-Square of a signal
  */
-double dsACRMS(double signal[], unsigned int length);
+double dsACRMS(const signal *read);
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The Root-Mean-Square of a signal
  */
-double dsRMS(double signal[], unsigned int length);
+double dsRMS(const signal *read);
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The Direct-Current power of a signal
  */
-double dsDCPower(double signal[], unsigned int length);
+double dsDCPower(const signal *read);
 
 /**
- * @param signal A pointer to the array of the signal
- * @param length The number of samples
+ * @param read A pointer to the signal
  * 
  * @return The Alternating-Current power of a signal
  */
-double dsACPower(double signal[], unsigned int length);
+double dsACPower(const signal *read);
 
 /*================================*/
 /* FOURIER ================================*/
